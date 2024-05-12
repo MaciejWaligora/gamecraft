@@ -22,7 +22,7 @@ export class GameFactory {
     public static async InitializeGame(config: GameConfig): Promise<Game>{
 
         const renderer = new PIXI.Application(config.display);
-        await AssetLoader.loadBackground(config.assets.background, renderer);
+        await AssetLoader.loadBackground(config.assets.background, renderer, config.display.background);
         const sampleLogoTexture = await AssetLoader.getTextures([config.assets.sampleLogo]);
         const sampleLogoModel = new SampleLogoModel({});
         const sampleLogoView =  new SampleLogoView({texture: sampleLogoTexture[0], renderer: renderer, interactive: true});

@@ -36,22 +36,10 @@ export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerCo
     }
 
     public select(){
-        if(!this._isSpinning){
-            this._isSpinning = true;
-            
-        }else{
-            this._currentSpinAnimation?.stop();
-        }
         this._currentSpinAnimation = this._config.animationManager.playSpinAnimation(this._config.view,1, true, 100, ()=>{this._isSpinning = false}, this);
     }
 
     public unSelect(){
-        if(!this._isSpinning){
-            this._isSpinning = true;
-            
-        }else{
-            this._currentSpinAnimation?.stop();
-        }
         this._currentSpinAnimation = this._config.animationManager.playSpinAnimation(this._config.view,1, false, 100, ()=>{this._isSpinning = false}, this);
     }
     private onClicked(){
