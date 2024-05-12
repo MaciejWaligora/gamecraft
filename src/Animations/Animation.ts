@@ -31,7 +31,6 @@ export class Animation<Tconfig extends AnimationConfig>{
             this._elapsed += delta;
             const progress = Math.min(this._elapsed / this._duration, 1);
             const easedProgress = this._easingFunction(progress);
-            console.log(easedProgress)
             this._callback(easedProgress);
 
             if (progress >= 1) {
@@ -51,6 +50,8 @@ export class Animation<Tconfig extends AnimationConfig>{
     
     public stop(){
         this._elapsed = this._duration;
+        this._finished = true;
+        this._onAnimationFinished();
     }
 
     isFinished(): boolean {

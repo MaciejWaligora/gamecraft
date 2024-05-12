@@ -1,4 +1,5 @@
-import { SpinAnimation } from "../../Animations/SpinAnimation";
+
+import { SpinAnimation , SpinAnimationConfig} from "../../Animations/SpinAnimation";
 import { Signal } from "../Signal";
 import { SampleLogoView, SampleLogoViewConfig } from "../Views/SampleLogoView";
 import { ViewController, ViewControllerConfig } from "./ViewController";
@@ -12,6 +13,8 @@ export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerCo
 
     public clickedSignal  = new Signal();
     private _isSpinning: boolean = false;
+    private _currentSpinAnimation: SpinAnimation<SpinAnimationConfig> | null = null
+
     constructor(config: Tconfig){
         super(config);
         this._config.view.clickedSignal.addListener(this.onClicked, this);
@@ -35,15 +38,21 @@ export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerCo
     public select(){
         if(!this._isSpinning){
             this._isSpinning = true;
-            this._config.animationManager.playSpinAnimation(this._config.view,2, true, 100, ()=>{this._isSpinning = false}, this);
+            
+        }else{
+            this._currentSpinAnimation?.stop();
         }
+        this._currentSpinAnimation = this._config.animationManager.playSpinAnimation(this._config.view,1, true, 100, ()=>{this._isSpinning = false}, this);
     }
 
     public unSelect(){
         if(!this._isSpinning){
             this._isSpinning = true;
-            this._config.animationManager.playSpinAnimation(this._config.view,2, false, 100, ()=>{this._isSpinning = false}, this);
+            
+        }else{
+            this._currentSpinAnimation?.stop();
         }
+        this._currentSpinAnimation = this._config.animationManager.playSpinAnimation(this._config.view,1, false, 100, ()=>{this._isSpinning = false}, this);
     }
     private onClicked(){
         
