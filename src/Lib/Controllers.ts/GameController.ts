@@ -33,9 +33,11 @@ export class GameController<Tconfig extends GameControllerConfig>{
     }
 
     private onLogoSelected(){
+        this._sampleLogoViewController.select();
     }
 
     private onLogoUnselected(){
+        this._sampleLogoViewController.unSelect();
     }
 
     private _onLogoViewClicked(){

@@ -5,6 +5,7 @@ import { TiltAnimation, TiltAnimationConfig } from "./Animations/TiltAnimation";
 import { View, ViewConfig } from "./Lib/Views/View";
 import { SlideInAnimation, SlideInAnimationConfig } from "./Animations/SlideInAnimiation";
 import { PopAnimation, PopAnimationConfig } from "./Animations/PopAnimation";
+import { SpinAnimation, SpinAnimationConfig } from "./Animations/SpinAnimation";
 
 export interface AnimationManagerConfig{
     renderer: PIXI.Application;
@@ -73,9 +74,33 @@ export class AnimationManager<Tconfig extends AnimationManagerConfig>{
         this._addAnimation(animation);
     }
 
+    public playSpinAnimation(target: View<ViewConfig>, numRotations: number, direction: boolean = false, duration: number, onFinished?: ()=>void, scope?: Object){
+
+        const config: SpinAnimationConfig ={
+            target: target,
+            duration: duration,
+            numRotations: numRotations,
+            direction: direction,
+            easingFunction: function (progress: number): number {
+                return 2 * Math.pow(Math.sin(progress * 2*Math.PI),2); 
+                // return progress
+            }
+        };
+
+        const animation = new SpinAnimation(config);
+
+        if(onFinished && scope){
+            animation.onFinishedAnimationSignal.addListener(onFinished, scope);
+        }
+        this._addAnimation(animation);
+        return animation;
+    }
+
     public flushFinishedAnimations(){
         this._animations = this._animations.filter(animation => !animation.isFinished());
     }
+
+    
 
 
     public update(delta: number) {

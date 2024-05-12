@@ -19,7 +19,7 @@ export abstract class View<Tconfig extends ViewConfig> extends PIXI.Container{
         super();
         this._renderer = config.renderer;
         if(config.interactive){
-            InputHandler.attachClickHandler(this);
+            this.addInputHandling();
         }
         if (config.scale !== undefined){
             this.scale.set(config.scale);
@@ -54,6 +54,13 @@ export abstract class View<Tconfig extends ViewConfig> extends PIXI.Container{
         this.clickedSignal.emit();
     }
 
+    public removeInputHandling(){
+        InputHandler.removeClickHandler(this);
+    }
+
+    public addInputHandling(){
+        InputHandler.attachClickHandler(this);
+    }
     protected _center(){
         const screenWidth = this._renderer.screen.width;
         const screenHeight = this._renderer.screen.height;
