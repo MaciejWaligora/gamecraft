@@ -30,6 +30,7 @@ export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerCo
         this._config.view.hide();
     }
     private onClicked(){
+        this._config.animationManager.playPopAnimation(this._config.view, 10, 1.1);
         this.clickedSignal.emit();
     }
 

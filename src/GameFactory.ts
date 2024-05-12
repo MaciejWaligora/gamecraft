@@ -4,6 +4,7 @@ import { AssetLoader } from './Lib/AssetLoader';
 import { SampleLogoModel } from './Lib/Models/SampleLogoModel';
 import { SampleLogoView } from './Lib/Views/SampleLogoView';
 import { GameController } from './Lib/Controllers.ts/GameController';
+import { AnimationManager } from './AnimationManager';
 
 
 export interface Game{
@@ -25,11 +26,12 @@ export class GameFactory {
         const sampleLogoTexture = await AssetLoader.getTextures([config.assets.sampleLogo]);
         const sampleLogoModel = new SampleLogoModel({});
         const sampleLogoView =  new SampleLogoView({texture: sampleLogoTexture[0], renderer: renderer, interactive: true});
-        
+        const animationManager = new AnimationManager({renderer: renderer});
 
         const gameController = new GameController({
             sampleLogoModel: sampleLogoModel,
-            sampleLogoView: sampleLogoView
+            sampleLogoView: sampleLogoView,
+            animationManager: animationManager
         });
 
         gameController.init();

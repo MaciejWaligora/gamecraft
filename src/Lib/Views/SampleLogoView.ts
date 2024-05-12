@@ -15,16 +15,7 @@ export class SampleLogoView<Tconfig extends SampleLogoViewConfig> extends View<S
         this._center();
     }
 
-    private _center(){
-        const screenWidth = this._renderer.screen.width;
-        const screenHeight = this._renderer.screen.height;
-
-        const containerWidth = this.width;
-        const conatinerHeight = this.height;
-
-        this.x = (screenWidth - containerWidth)/2;
-        this.y = (screenHeight - conatinerHeight)/2;
-    }
+    
 
     public update(): void {
         
