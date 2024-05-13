@@ -16,9 +16,8 @@ export class PopAnimation<Tconfig extends PopAnimationConfig> extends Animation<
 
     protected _callback(delta: number): void {
         const scaleFactor = delta * this._speed;
-        const scaleDiff = this._target.scale.x - 1; // Calculate the difference from the original scale
+        const scaleDiff = this._target.scale.x - 1;
 
-        // Calculate the change in position based on the scale difference
         const positionChange = scaleDiff * (this._target.width / 2);
 
         if (this._target.scale.x < this._targetScale) {

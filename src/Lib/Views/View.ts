@@ -30,6 +30,7 @@ export abstract class View<Tconfig extends ViewConfig> extends PIXI.Container{
 
     public add(){
         this._renderer.stage.addChild(this);
+        this._center();
         this.alpha = 1;
         this.showSignal.emit();
     }

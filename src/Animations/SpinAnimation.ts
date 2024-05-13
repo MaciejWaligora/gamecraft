@@ -46,11 +46,12 @@ export class SpinAnimation<Tconfig extends SpinAnimationConfig> extends Animatio
     }
 
     protected _onAnimationFinished(): void {
-        super._onAnimationFinished();
+        
         this._target.rotation = 0;
         this._target.x = this._initialPos.x;
         this._target.y = this._initialPos.y;
         this._target.pivot.x = 0;
         this._target.pivot.y = 0;
+        super._onAnimationFinished();
     }
 }

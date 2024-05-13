@@ -6,6 +6,8 @@ import { View, ViewConfig } from "./Lib/Views/View";
 import { SlideInAnimation, SlideInAnimationConfig } from "./Animations/SlideInAnimiation";
 import { PopAnimation, PopAnimationConfig } from "./Animations/PopAnimation";
 import { SpinAnimation, SpinAnimationConfig } from "./Animations/SpinAnimation";
+import { SlideInFromLeftAninmation, SlideInFromLeftAninmationConfig } from "./Animations/SlideInfromLeftAnimation";
+import { SlideOutToRightAnimtaion, SlideOutToRightanimtaionConfig } from "./Animations/SlideOutToRightAnimation";
 
 export interface AnimationManagerConfig{
     renderer: PIXI.Application;
@@ -13,11 +15,12 @@ export interface AnimationManagerConfig{
 
 export class AnimationManager<Tconfig extends AnimationManagerConfig>{
     private _animations: Animation<AnimationConfig>[] = []
+    private _renderer: PIXI.Application;
 
     constructor(config: Tconfig){
-        const renderer = config.renderer;
+        this._renderer = config.renderer;
 
-        renderer.ticker.add(delta => {
+        this._renderer.ticker.add(delta => {
             this.update(delta);
             this.flushFinishedAnimations();
         });
@@ -95,6 +98,35 @@ export class AnimationManager<Tconfig extends AnimationManagerConfig>{
         this._addAnimation(animation);
         return animation;
     }
+
+    public playSlideInfromLeft(target: View<ViewConfig>, duration: number, onFinished?: ()=>void, scope?: Object){
+        const config: SlideInFromLeftAninmationConfig = {
+            target: target,
+            duration: duration,
+            endPosition:{x:1, y: 1}
+        }
+        const animation = new SlideInFromLeftAninmation(config);
+        if(onFinished && scope){
+            animation.onFinishedAnimationSignal.addListener(onFinished, scope);
+        }
+        this._addAnimation(animation);
+
+    }
+    public playSlideOutToRight(target: View<ViewConfig>, duration: number, onFinished?: ()=>void, scope?: Object){
+        const config: SlideOutToRightanimtaionConfig = {
+            target: target,
+            duration: duration,
+            endPosition:{x:1, y: 1},
+            screenWidth: this._renderer.screen.width
+        }
+        const animation = new SlideOutToRightAnimtaion(config);
+        if(onFinished && scope){
+            animation.onFinishedAnimationSignal.addListener(onFinished, scope);
+        }
+        this._addAnimation(animation);
+
+    }
+
 
     public flushFinishedAnimations(){
         this._animations = this._animations.filter(animation => !animation.isFinished());

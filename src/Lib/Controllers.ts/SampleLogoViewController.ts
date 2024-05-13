@@ -13,7 +13,6 @@ export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerCo
 
     public clickedSignal  = new Signal();
     private _isSpinning: boolean = false;
-    private _currentSpinAnimation: SpinAnimation<SpinAnimationConfig> | null = null
 
     constructor(config: Tconfig){
         super(config);
@@ -21,10 +20,15 @@ export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerCo
     }
     public add(){
         this._config.view.add();
+        this._config.animationManager.playSlideInfromLeft(this._config.view, 100);
     }
 
     public remove(){
-        this._config.view.remove();
+        this._config.animationManager.playSlideOutToRight(this._config.view, 100, ()=>{
+            this._config.view.remove();
+            this.add();
+        }, this)
+        
     }
 
     public show(){
@@ -36,11 +40,11 @@ export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerCo
     }
 
     public select(){
-        this._currentSpinAnimation = this._config.animationManager.playSpinAnimation(this._config.view,1, true, 100, ()=>{this._isSpinning = false}, this);
+        this._config.animationManager.playSpinAnimation(this._config.view,1, true, 100, ()=>{this._isSpinning = false}, this)
     }
 
     public unSelect(){
-        this._currentSpinAnimation = this._config.animationManager.playSpinAnimation(this._config.view,1, false, 100, ()=>{this._isSpinning = false}, this);
+        this._config.animationManager.playSpinAnimation(this._config.view,1, false, 100, ()=>{this._isSpinning = false; this.remove()}, this)
     }
     private onClicked(){
         

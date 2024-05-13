@@ -19,7 +19,7 @@ export const config: GameConfig = {
       height: 1920,
       autoResize: true,
       resolution: window.devicePixelRatio,
-      background: 0xffffff
+      background: 0xffff5f
 
     },
     assets: {
