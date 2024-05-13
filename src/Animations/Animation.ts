@@ -25,7 +25,6 @@ export class Animation<Tconfig extends AnimationConfig>{
         this._target = config.target;
         this._elapsed = 0;
         this._finished = false;
-        InputHandler.removeClickHandler(this._target);
     }
 
     public update(delta: number) {
@@ -48,7 +47,6 @@ export class Animation<Tconfig extends AnimationConfig>{
 
     protected _onAnimationFinished(): void{
         this.onFinishedAnimationSignal.emit();
-        InputHandler.attachClickHandler(this._target)
     }
     
     public stop(){

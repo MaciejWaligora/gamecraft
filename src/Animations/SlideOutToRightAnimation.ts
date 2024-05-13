@@ -14,7 +14,6 @@ export class SlideOutToRightAnimtaion<Tconfig extends SlideOutToRightanimtaionCo
 
     protected _callback(delta: number): void {
         super._callback(delta);
-
         this._target.alpha = 1-delta;
     }
 }

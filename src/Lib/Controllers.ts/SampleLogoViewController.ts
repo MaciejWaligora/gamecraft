@@ -12,7 +12,6 @@ export interface SampleLogoViewControllerConfig extends ViewControllerConfig{
 export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerConfig> extends ViewController<SampleLogoViewControllerConfig>{
 
     public clickedSignal  = new Signal();
-    private _isSpinning: boolean = false;
 
     constructor(config: Tconfig){
         super(config);
@@ -40,11 +39,11 @@ export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerCo
     }
 
     public select(){
-        this._config.animationManager.playSpinAnimation(this._config.view,1, true, 100, ()=>{this._isSpinning = false}, this)
+        this._config.animationManager.playSpinAnimation(this._config.view,1, true, 100, ()=>{}, this)
     }
 
     public unSelect(){
-        this._config.animationManager.playSpinAnimation(this._config.view,1, false, 100, ()=>{this._isSpinning = false; this.remove()}, this)
+        this._config.animationManager.playSpinAnimation(this._config.view,1, false, 100, ()=>{ this.remove()}, this)
     }
     private onClicked(){
         

@@ -17,8 +17,6 @@ export class SlideInFromLeftAninmation<Tconfig extends SlideInFromLeftAninmation
 
     protected _callback(delta: number): void {
         super._callback(delta);
-
         this._target.alpha = delta
-        console.log(delta)
     }
 }

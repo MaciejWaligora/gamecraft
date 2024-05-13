@@ -11,6 +11,7 @@ export class SampleLogoView<Tconfig extends SampleLogoViewConfig> extends View<S
     constructor(config: Tconfig){
         super(config);
         this._logoSprite = new PIXI.Sprite(config.texture);
+        this._logoSprite.anchor.set(0.5, 0.5);
         this.addChild(this._logoSprite);
         this._center();
     }

@@ -66,11 +66,8 @@ export abstract class View<Tconfig extends ViewConfig> extends PIXI.Container{
         const screenWidth = this._renderer.screen.width;
         const screenHeight = this._renderer.screen.height;
 
-        const containerWidth = this.width;
-        const conatinerHeight = this.height;
-
-        this.x = (screenWidth - containerWidth)/2;
-        this.y = (screenHeight - conatinerHeight)/2;
+        this.x = screenWidth/2;
+        this.y = screenHeight/2;
     }
     public abstract update(): void;
 }

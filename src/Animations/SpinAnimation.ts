@@ -20,13 +20,9 @@ export class SpinAnimation<Tconfig extends SpinAnimationConfig> extends Animatio
         this._numRotations = config.numRotations;
         this._totalAngle = this._numRotations * 4*Math.PI;
         this._speed = this._totalAngle / config.duration;
-        const center = new PIXI.Point(config.target.width / 2, config.target.height / 2);
-        this._target.x = this._target.x + config.target.width / 2;
-        this._target.y = this._target.y + config.target.height / 2
         if(config.direction){
             this._direction = config.direction
         }
-        this._target.pivot.copyFrom(center);
     }
 
     protected _callback(delta: number): void {
@@ -47,11 +43,6 @@ export class SpinAnimation<Tconfig extends SpinAnimationConfig> extends Animatio
 
     protected _onAnimationFinished(): void {
         
-        this._target.rotation = 0;
-        this._target.x = this._initialPos.x;
-        this._target.y = this._initialPos.y;
-        this._target.pivot.x = 0;
-        this._target.pivot.y = 0;
         super._onAnimationFinished();
     }
 }
