@@ -1,5 +1,4 @@
 
-import { SpinAnimation , SpinAnimationConfig} from "../../Animations/SpinAnimation";
 import { Signal } from "../Signal";
 import { SampleLogoView, SampleLogoViewConfig } from "../Views/SampleLogoView";
 import { ViewController, ViewControllerConfig } from "./ViewController";
@@ -25,7 +24,6 @@ export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerCo
     public remove(){
         this._config.animationManager.playSlideOutToRight(this._config.view, 100, ()=>{
             this._config.view.remove();
-            this.add();
         }, this)
         
     }
