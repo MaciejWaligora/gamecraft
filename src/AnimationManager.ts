@@ -10,7 +10,6 @@ import { SlideInFromLeftAninmation, SlideInFromLeftAninmationConfig } from "./An
 import { SlideOutToRightAnimtaion, SlideOutToRightanimtaionConfig } from "./Animations/SlideOutToRightAnimation";
 import { ConstantMoveAnimation, ConstantMoveAnimationConfig } from "./Animations/ConstantMoveAnimation";
 import { Direction } from "./Lib/Models/SnakeHeadModel";
-import { SpinDegreesAnimation, SpinDegreesAnimationConfig} from "./Animations/SpinDegreesAnimation";
 
 export interface AnimationManagerConfig{
     renderer: PIXI.Application;
@@ -117,17 +116,6 @@ export class AnimationManager<Tconfig extends AnimationManagerConfig>{
         return animation;
     }
 
-    public playSpin90Degrees(target: View<ViewConfig>, direction: boolean, duration: number, targetRotation: number){
-        const config: SpinDegreesAnimationConfig = {
-            target: target,
-            direction: direction,
-            duration: duration,
-            targetSpin: targetRotation
-        }
-
-        const animation = new SpinDegreesAnimation(config);
-        this._addAnimation(animation);
-    }
 
     public playSlideInfromLeft(target: View<ViewConfig>, duration: number, onFinished?: ()=>void, scope?: Object){
         const config: SlideInFromLeftAninmationConfig = {

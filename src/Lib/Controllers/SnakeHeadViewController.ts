@@ -1,6 +1,4 @@
 
-
-import { Animation, AnimationConfig } from '../../Animations/Animation';
 import { ConstantMoveAnimation, ConstantMoveAnimationConfig } from '../../Animations/ConstantMoveAnimation';
 import { Direction } from '../Models/SnakeHeadModel';
 import { Signal } from '../Signal';
@@ -48,7 +46,6 @@ export class SnakeHeadViewController<Tconfig extends SnakeHeadViewControllerConf
 
     public setDirection(dir: Direction){
         this._direction = dir;
-        const _prevDirection = this._currentAnimation?.getCurrentDirection();
         if(this._currentAnimation){
             this._currentAnimation.stop();
             this._currentAnimation = this._config.animationManager.playLinearMoveInfnitely(this._config.view, this._direction, this._speed);
@@ -56,18 +53,18 @@ export class SnakeHeadViewController<Tconfig extends SnakeHeadViewControllerConf
 
         //TODO get the rotation animation in line
         switch (dir){
-            // case 'up':
-            //     _prevDirection === 'left' ? this._config.animationManager.playSpin90Degrees(this._config.view, false, 100, Math.PI/2) :this._config.animationManager.playSpin90Degrees(this._config.view, true, 100, Math.PI/2) ;
-            //     break;
-            // case 'down':
-            //     _prevDirection === 'left' ? this.turnLeft() : this.turnRight();
-            //     break;
-            // case 'left':
-            //     _prevDirection === 'up' ? this.turnLeft() : this.turnRight();
-            //     break;
-            // case 'right':
-            //     _prevDirection === 'up' ? this.turnRight(): this.turnLeft();
-                // break;
+            case 'up':
+                this._config.view.rotation = 0;
+                break;
+            case 'down':
+                this._config.view.rotation = Math.PI;
+                break;
+            case 'left':
+                this._config.view.rotation = Math.PI + Math.PI/2;
+                break;
+            case 'right':
+                this._config.view.rotation = Math.PI/2;
+                break;
         }
 
     }   
