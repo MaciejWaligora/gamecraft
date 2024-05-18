@@ -1,10 +1,10 @@
 
-import { SnakeBodyModel } from '../Models/SnakeBodyModel';
+import { SnakeBodyModel, SnakeBodyModelConfig } from '../Models/SnakeBodyModel';
 import { Signal } from '../Signal';
 import { ModelController, ModelControllerConfig } from './ModelController';
 
 export interface SnakeBodyModelControllerConfig extends ModelControllerConfig{
-    model: SnakeBodyModel;
+    model: SnakeBodyModel<SnakeBodyModelConfig>;
 }
 
 export class SnakeBodyModelController<Tconfig extends SnakeBodyModelControllerConfig> extends ModelController<SnakeBodyModelControllerConfig>{
