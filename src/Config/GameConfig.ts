@@ -10,7 +10,11 @@ export interface GameConfig {
     assets: {
       background: string;
       sampleLogo: string;
+      snakeHead: string;
     };
+    snakeConfig: {
+      speed: number;
+    }
   }
 
 export const config: GameConfig = {
@@ -24,6 +28,10 @@ export const config: GameConfig = {
     },
     assets: {
       background: './graphics/background.png',
-      sampleLogo: './graphics/logo-template.png'
+      sampleLogo: './graphics/logo-template.png',
+      snakeHead: './graphics/snake_head.png'
+    },
+    snakeConfig: {
+      speed: 10
     }
   };

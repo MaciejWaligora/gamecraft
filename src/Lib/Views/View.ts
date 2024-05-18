@@ -24,7 +24,6 @@ export abstract class View<Tconfig extends ViewConfig> extends PIXI.Container{
         if (config.scale !== undefined){
             this.scale.set(config.scale);
         }
-        this._renderer.stage.addChild(this);
     }
 
 

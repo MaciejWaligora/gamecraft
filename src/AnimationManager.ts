@@ -8,6 +8,9 @@ import { PopAnimation, PopAnimationConfig } from "./Animations/PopAnimation";
 import { SpinAnimation, SpinAnimationConfig } from "./Animations/SpinAnimation";
 import { SlideInFromLeftAninmation, SlideInFromLeftAninmationConfig } from "./Animations/SlideInfromLeftAnimation";
 import { SlideOutToRightAnimtaion, SlideOutToRightanimtaionConfig } from "./Animations/SlideOutToRightAnimation";
+import { ConstantMoveAnimation, ConstantMoveAnimationConfig } from "./Animations/ConstantMoveAnimation";
+import { Direction } from "./Lib/Models/SnakeHeadModel";
+import { SpinDegreesAnimation, SpinDegreesAnimationConfig} from "./Animations/SpinDegreesAnimation";
 
 export interface AnimationManagerConfig{
     renderer: PIXI.Application;
@@ -40,6 +43,21 @@ export class AnimationManager<Tconfig extends AnimationManagerConfig>{
         }
         const animation  = new MoveAnimation(config);
         this._addAnimation(animation);
+    }
+
+    public playLinearMoveInfnitely(target: View<ViewConfig>, direction: Direction, speed: number){
+        const config: ConstantMoveAnimationConfig = {
+            direction:direction,
+            speed: speed,
+            target: target,
+            duration: 1,
+            isInfinite: true,
+            maxX: this._renderer.screen.width,
+            maxY: this._renderer.screen.height
+        }
+        const animation = new ConstantMoveAnimation(config);
+        this._addAnimation(animation);
+        return animation;
     }
 
     public playTiltAnimation(target: View<ViewConfig>, duration: number){
@@ -99,6 +117,18 @@ export class AnimationManager<Tconfig extends AnimationManagerConfig>{
         return animation;
     }
 
+    public playSpin90Degrees(target: View<ViewConfig>, direction: boolean, duration: number, targetRotation: number){
+        const config: SpinDegreesAnimationConfig = {
+            target: target,
+            direction: direction,
+            duration: duration,
+            targetSpin: targetRotation
+        }
+
+        const animation = new SpinDegreesAnimation(config);
+        this._addAnimation(animation);
+    }
+
     public playSlideInfromLeft(target: View<ViewConfig>, duration: number, onFinished?: ()=>void, scope?: Object){
         const config: SlideInFromLeftAninmationConfig = {
             target: target,
@@ -131,8 +161,11 @@ export class AnimationManager<Tconfig extends AnimationManagerConfig>{
     public flushFinishedAnimations(){
         this._animations = this._animations.filter(animation => !animation.isFinished());
     }
-
     
+    public stopAnimation(animation: Animation<AnimationConfig>){
+        const index = this._animations.indexOf(animation);
+        this._animations[index].stop();
+    }
 
 
     public update(delta: number) {

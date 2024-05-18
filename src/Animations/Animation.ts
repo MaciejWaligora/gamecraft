@@ -9,6 +9,7 @@ export interface AnimationConfig{
     duration: number;
     easingFunction?: (progress: number) => number;
     target: View<ViewConfig>;
+    isInfinite?: boolean;
 }
 
 export class Animation<Tconfig extends AnimationConfig>{
@@ -18,6 +19,7 @@ export class Animation<Tconfig extends AnimationConfig>{
     protected  _target: View<ViewConfig>;
     protected  _elapsed: number;
     protected  _finished: boolean;
+    protected _isInfinite: boolean;
 
     constructor(config: Tconfig){
         this._duration = config.duration;
@@ -25,6 +27,7 @@ export class Animation<Tconfig extends AnimationConfig>{
         this._target = config.target;
         this._elapsed = 0;
         this._finished = false;
+        this._isInfinite = config.isInfinite ? config.isInfinite : false;
     }
 
     public update(delta: number) {
@@ -34,7 +37,7 @@ export class Animation<Tconfig extends AnimationConfig>{
             const easedProgress = this._easingFunction(progress);
             this._callback(easedProgress);
 
-            if (progress >= 1) {
+            if (progress >= 1 && !this._isInfinite) {
                 this._onAnimationFinished();
                 this._finished = true;
             }

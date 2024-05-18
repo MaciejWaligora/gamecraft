@@ -13,7 +13,7 @@ export class SpinAnimation<Tconfig extends SpinAnimationConfig> extends Animatio
     private _speed: number;
     private _initialPos = {x: this._target.x, y: this._target.y}
     private _alreadyspun = 0;
-    private _direction = false //false =clockwise, true ocunter clockwise
+    private _direction = false //false = clockwise, true = ocunter-clockwise
 
     constructor(config: Tconfig) {
         super(config);

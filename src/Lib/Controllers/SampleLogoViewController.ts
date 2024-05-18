@@ -11,6 +11,7 @@ export interface SampleLogoViewControllerConfig extends ViewControllerConfig{
 export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerConfig> extends ViewController<SampleLogoViewControllerConfig>{
 
     public clickedSignal  = new Signal();
+    public removedSignal = new Signal();
 
     constructor(config: Tconfig){
         super(config);
@@ -24,6 +25,7 @@ export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerCo
     public remove(){
         this._config.animationManager.playSlideOutToRight(this._config.view, 100, ()=>{
             this._config.view.remove();
+            this.removedSignal.emit();
         }, this)
         
     }
@@ -37,11 +39,11 @@ export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerCo
     }
 
     public select(){
-        this._config.animationManager.playSpinAnimation(this._config.view,1, true, 100, ()=>{}, this)
+        this._config.animationManager.playSpinAnimation(this._config.view,0.25, true, 100, ()=>{}, this)
     }
 
     public unSelect(){
-        this._config.animationManager.playSpinAnimation(this._config.view,1, false, 100, ()=>{ this.remove()}, this)
+        this._config.animationManager.playSpinAnimation(this._config.view,0.25, false, 100, ()=>{ this.remove()}, this)
     }
     private onClicked(){
         
