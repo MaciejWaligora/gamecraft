@@ -28,8 +28,11 @@ export class GameFactory {
         await AssetLoader.loadBackground(config.assets.background, renderer, config.display.background);
         const sampleLogoTexture = await AssetLoader.getTextures([config.assets.sampleLogo]);
         const snakeHead = await AssetLoader.getTextures([config.assets.snakeHead]);
+        const snkeBodyPart = await AssetLoader.getTextures([config.assets.snakeBodyPart]);
+
         const sampleLogoModel = new SampleLogoModel({});
         const snakeHeadModel = new SnakeHeadModel(config.snakeConfig);
+        
         const sampleLogoView =  new SampleLogoView({texture: sampleLogoTexture[0], renderer: renderer, interactive: true});
         const snakeHeadView = new SnakeHeadView({texture: snakeHead[0], renderer: renderer, interactive: false, scale: 0.05});
         const animationManager = new AnimationManager({renderer: renderer});
