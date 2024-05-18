@@ -12,9 +12,11 @@ export interface SnakeHeadViewControllerConfig extends ViewControllerConfig{
 export class SnakeHeadViewController<Tconfig extends SnakeHeadViewControllerConfig> extends ViewController<SnakeHeadViewControllerConfig>{
 
     public clickedSignal = new Signal();
+    public movedSignal = new Signal<string>();
     private _speed = 0;
     private _direction: Direction = 'up';
     private _currentAnimation: ConstantMoveAnimation<ConstantMoveAnimationConfig> | null = null
+
 
     constructor(config: Tconfig){
         super(config);
@@ -41,6 +43,7 @@ export class SnakeHeadViewController<Tconfig extends SnakeHeadViewControllerConf
         if(this._currentAnimation){
             this._currentAnimation.stop();
             this._currentAnimation = this._config.animationManager.playLinearMoveInfnitely(this._config.view, this._direction, this._speed);
+            this._currentAnimation.positionChangedSignal.addListener((e)=>{this.movedSignal.emit(e)},this);
         }
     }
 
@@ -49,9 +52,9 @@ export class SnakeHeadViewController<Tconfig extends SnakeHeadViewControllerConf
         if(this._currentAnimation){
             this._currentAnimation.stop();
             this._currentAnimation = this._config.animationManager.playLinearMoveInfnitely(this._config.view, this._direction, this._speed);
+            this._currentAnimation.positionChangedSignal.addListener((e)=>{this.movedSignal.emit(e)},this);
         }
 
-        //TODO get the rotation animation in line
         switch (dir){
             case 'up':
                 this._config.view.rotation = 0;
@@ -74,6 +77,7 @@ export class SnakeHeadViewController<Tconfig extends SnakeHeadViewControllerConf
             this._currentAnimation.stop();
         }
         this._currentAnimation = this._config.animationManager.playLinearMoveInfnitely(this._config.view, this._direction, this._speed);
+        this._currentAnimation.positionChangedSignal.addListener((e)=>{this.movedSignal.emit(e)},this);
     }
 
     public stopMoving(){

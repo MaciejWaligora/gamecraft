@@ -103,7 +103,6 @@ export class AnimationManager<Tconfig extends AnimationManagerConfig>{
             direction: direction,
             easingFunction: function (progress: number): number {
                 return 2 * Math.pow(Math.sin(progress * 2*Math.PI),2); 
-                // return progress
             }
         };
 

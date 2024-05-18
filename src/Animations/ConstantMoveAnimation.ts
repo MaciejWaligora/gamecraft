@@ -1,4 +1,5 @@
 import { Direction } from "../Lib/Models/SnakeHeadModel";
+import { Signal } from "../Lib/Signal";
 import { Animation, AnimationConfig } from "./Animation";
 import * as PIXI from 'pixijs';
 
@@ -14,7 +15,7 @@ export class ConstantMoveAnimation<Tconfig extends ConstantMoveAnimationConfig> 
     private _speed:number;
     private _direction: Direction;
     private _config: Tconfig;
-
+    public positionChangedSignal = new Signal<string>();
     constructor(config: Tconfig){
         super(config);
         this._config = config;
@@ -26,7 +27,11 @@ export class ConstantMoveAnimation<Tconfig extends ConstantMoveAnimationConfig> 
         return this._direction;
     }
 
+
+
     protected _callback(delta: number): void {
+        const currentPos = `${this._target.x}:${this._target.y}`;
+        this.positionChangedSignal.emit(currentPos);
         switch(this._direction){
             case 'up':
                 if(this._target.y < 0){
