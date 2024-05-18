@@ -1,21 +1,19 @@
 
-import { SnakeModel } from '../Models/SnakeModel';
-import { Signal } from '../Signal';
-import { ModelController, ModelControllerConfig } from './ModelController';
 
-export interface SnakeModelControllerConfig extends ModelControllerConfig{
-    model: SnakeModel;
+import { Signal } from '../Signal';
+import { SnakeBodyModelController,SnakeBodyModelControllerConfig } from './SnakeBodyModelController';
+import { SnakeHeadModelController, SnakeHeadModelControllerConfig } from './SnakeHeadModelController';
+
+export interface SnakeModelControllerConfig{
+    headModelController: SnakeHeadModelController<SnakeHeadModelControllerConfig>;
+    bodyModelController: SnakeBodyModelController<SnakeBodyModelControllerConfig>
 }
 
-export class SnakeModelController<Tconfig extends SnakeModelControllerConfig> extends ModelController<SnakeModelControllerConfig>{
-    public updateSignal = new Signal();
+export class SnakeModelController<Tconfig extends SnakeModelControllerConfig>{
+
     constructor(config: Tconfig){
-        super(config);
-        this._config.model.updateSignal.addListener(this.onUpdate, this);
 
     }
-    public onUpdate(){
-        this.updateSignal.emit();
-    }
+
 }
 

@@ -15,7 +15,7 @@ export class ConstantMoveAnimation<Tconfig extends ConstantMoveAnimationConfig> 
     private _speed:number;
     private _direction: Direction;
     private _config: Tconfig;
-    public positionChangedSignal = new Signal<string>();
+    public positionChangedSignal = new Signal<{x:number, y: number}>();
     constructor(config: Tconfig){
         super(config);
         this._config = config;
@@ -30,7 +30,7 @@ export class ConstantMoveAnimation<Tconfig extends ConstantMoveAnimationConfig> 
 
 
     protected _callback(delta: number): void {
-        const currentPos = `${this._target.x}:${this._target.y}`;
+        const currentPos = {x: this._target.x, y: this._target.y};
         this.positionChangedSignal.emit(currentPos);
         switch(this._direction){
             case 'up':

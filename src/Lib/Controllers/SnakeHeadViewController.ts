@@ -11,19 +11,24 @@ export interface SnakeHeadViewControllerConfig extends ViewControllerConfig{
 
 export class SnakeHeadViewController<Tconfig extends SnakeHeadViewControllerConfig> extends ViewController<SnakeHeadViewControllerConfig>{
 
-    public clickedSignal = new Signal();
-    public movedSignal = new Signal<string>();
+    public movedSignal = new Signal<{x:number, y: number}>();
     private _speed = 0;
     private _direction: Direction = 'up';
     private _currentAnimation: ConstantMoveAnimation<ConstantMoveAnimationConfig> | null = null
+    public addedSignal = new Signal<{x:number, y: number}>();
 
 
     constructor(config: Tconfig){
         super(config);
-        this._config.view.clickedSignal.addListener(this.onClicked, this);
+        this._config.view.addedSignal.addListener(this._onAdded, this);
     }
     public add(){
         this._config.view.add();
+        this.movedSignal.emit({x:this._config.view.x, y: this._config.view.y})
+    }
+
+    private _onAdded(){
+        this.addedSignal.emit({x:this._config.view.x, y: this._config.view.y});
     }
 
     public remove(){
@@ -86,8 +91,6 @@ export class SnakeHeadViewController<Tconfig extends SnakeHeadViewControllerConf
         }
     }
 
-    private onClicked(){
-       this.clickedSignal.emit();
-    }
+
 }
 

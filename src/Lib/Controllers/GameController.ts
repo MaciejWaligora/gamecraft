@@ -1,11 +1,15 @@
 import { AnimationManager, AnimationManagerConfig } from "../../AnimationManager";
 import { InputHandler } from "../../Handlers/InputHandler";
 import { SampleLogoModel, SampleLogoModelConfig } from "../Models/SampleLogoModel";
+import { SnakeBodyModel, SnakeBodyModelConfig } from "../Models/SnakeBodyModel";
 import { Direction, SnakeHeadModel, SnakeHeadModelConfig } from "../Models/SnakeHeadModel";
 import { SampleLogoView, SampleLogoViewConfig } from "../Views/SampleLogoView";
+import { SnakeBodyView, SnakeBodyViewConfig } from "../Views/SnakeBodyView";
 import { SnakeHeadView, SnakeHeadViewConfig } from "../Views/SnakeHeadView";
 import { SampleLogoModelController, SampleLogoModelControllerConfig } from "./SampleLogoModellController";
 import { SampleLogoViewController, SampleLogoViewControllerConfig } from "./SampleLogoViewController";
+import { SnakeBodyModelController, SnakeBodyModelControllerConfig } from "./SnakeBodyModelController";
+import { SnakeBodyViewController, SnakeBodyViewControllerConfig } from "./SnakeBodyViewController";
 import { SnakeHeadModelController, SnakeHeadModelControllerConfig } from "./SnakeHeadModelController";
 import { SnakeHeadViewController, SnakeHeadViewControllerConfig } from "./SnakeHeadViewController";
 
@@ -15,6 +19,8 @@ export interface GameControllerConfig{
     animationManager: AnimationManager<AnimationManagerConfig>;
     snakeHeadModel: SnakeHeadModel<SnakeHeadModelConfig>;
     snakeHeadView: SnakeHeadView<SnakeHeadViewConfig>;
+    snakeBodyModel: SnakeBodyModel<SnakeBodyModelConfig>;
+    snakeBodyView: SnakeBodyView<SnakeBodyViewConfig>;
 }
 
 export class GameController<Tconfig extends GameControllerConfig>{
@@ -22,7 +28,10 @@ export class GameController<Tconfig extends GameControllerConfig>{
     private _sampleLogoModelController: SampleLogoModelController<SampleLogoModelControllerConfig>;
     private _sampleLogoViewController: SampleLogoViewController<SampleLogoViewControllerConfig>;
     private _snakeHeadModelController: SnakeHeadModelController<SnakeHeadModelControllerConfig>;
-    private _snakeHeadViewController: SnakeHeadViewController<SnakeHeadViewControllerConfig>
+    private _snakeHeadViewController: SnakeHeadViewController<SnakeHeadViewControllerConfig>;
+
+    private _snakeBodyModelController: SnakeBodyModelController<SnakeBodyModelControllerConfig>;
+    private _snakeBodyViewController: SnakeBodyViewController<SnakeBodyViewControllerConfig>;
 
     constructor(config: Tconfig){
         //create all controllers here
@@ -30,6 +39,9 @@ export class GameController<Tconfig extends GameControllerConfig>{
         this._sampleLogoViewController = new SampleLogoViewController({view: config.sampleLogoView, animationManager: config.animationManager});
         this._snakeHeadModelController = new SnakeHeadModelController({model: config.snakeHeadModel});
         this._snakeHeadViewController = new SnakeHeadViewController({view: config.snakeHeadView, animationManager: config.animationManager});
+        this._snakeBodyModelController = new SnakeBodyModelController({model: config.snakeBodyModel});
+        this._snakeBodyViewController = new SnakeBodyViewController({view: config.snakeBodyView, animationManager: config.animationManager});
+        
         //add listeners to controllers
         this._sampleLogoModelController.logoSelectedSignal.addListener(this.onLogoSelected, this);
         this._sampleLogoModelController.logoUnselectedSignal.addListener(this.onLogoUnselected, this);
@@ -40,12 +52,26 @@ export class GameController<Tconfig extends GameControllerConfig>{
         this._snakeHeadModelController.directionChangedSignal.addListener(this._onSnakeDirectionChanged, this);
         this._snakeHeadModelController.speedChangedSiganl.addListener(this._onSnakeSpeedChanged, this);
 
+        this._snakeHeadViewController.movedSignal.addListener(this._onHeadMoved, this);
+        this._snakeHeadViewController.addedSignal.addListener(this._onHeadAdded, this);
+
         InputHandler.buttonClickedSignal.addListener(this._onKeyBoardClicked, this);
 
         
     }
     public init(){
         this._sampleLogoViewController.add();
+    }
+    private _onHeadMoved(headPos: {x:number, y: number} | undefined){
+        if(headPos){
+            this._snakeBodyViewController.changePosition(headPos);
+        }
+    }
+
+    private _onHeadAdded(headPos: {x:number, y: number} | undefined){
+        if(headPos){
+            // this._snakeBodyViewController.placeInit(headPos);
+        }
     }
 
     private onLogoSelected(){
@@ -83,6 +109,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
 
     private _onLogoRemoved(){
         this._snakeHeadViewController.add();
+        this._snakeBodyViewController.add();
         this._snakeHeadModelController.changedirection('up');
         this._snakeHeadModelController.changeSpeed(10);
         this._snakeHeadModelController.changeMovingStatus(true);
