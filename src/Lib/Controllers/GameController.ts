@@ -52,6 +52,8 @@ export class GameController<Tconfig extends GameControllerConfig>{
         this._snakeHeadModelController.directionChangedSignal.addListener(this._onSnakeDirectionChanged, this);
         this._snakeHeadModelController.speedChangedSiganl.addListener(this._onSnakeSpeedChanged, this);
 
+        this._snakeBodyModelController.growSignal.addListener(this._onBodyGrow, this);
+
         this._snakeHeadViewController.movedSignal.addListener(this._onHeadMoved, this);
         this._snakeHeadViewController.addedSignal.addListener(this._onHeadAdded, this);
 
@@ -65,6 +67,12 @@ export class GameController<Tconfig extends GameControllerConfig>{
     private _onHeadMoved(headPos: {x:number, y: number} | undefined){
         if(headPos){
             this._snakeBodyViewController.changePosition(headPos);
+        }
+    }
+
+    private _onBodyGrow(growFactor: number | undefined){
+        if(growFactor != undefined){
+            this._snakeBodyViewController.grow(growFactor);
         }
     }
 
@@ -109,10 +117,13 @@ export class GameController<Tconfig extends GameControllerConfig>{
 
     private _onLogoRemoved(){
         this._snakeHeadViewController.add();
-        this._snakeBodyViewController.add();
+        this._snakeBodyViewController.show();
         this._snakeHeadModelController.changedirection('up');
         this._snakeHeadModelController.changeSpeed(10);
         this._snakeHeadModelController.changeMovingStatus(true);
+        setInterval(()=>{
+            this._snakeBodyModelController.grow(1);
+        }, 1000)
     }
 
     private _onKeyBoardClicked(key: string | undefined){

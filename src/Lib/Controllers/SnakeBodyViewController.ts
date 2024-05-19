@@ -23,9 +23,9 @@ export class SnakeBodyViewController<Tconfig extends SnakeBodyViewControllerConf
         this._config.view.changePosition(pos);
    }
 
-    // public placeInit(headPos: {x: number, y: number}){
-    //     this._config.view.placeInit(headPos);
-    // }
+    public grow(growFactor: number){
+        this._config.view.grow(growFactor);
+    }
 
     public remove(){
         this._config.view.remove();

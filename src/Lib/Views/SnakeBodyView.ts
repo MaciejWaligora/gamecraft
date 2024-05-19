@@ -19,14 +19,15 @@ export class SnakeBodyView<Tconfig extends SnakeBodyViewConfig>{
         this._componentTexture = config.texture;
         this._renderer =  config.renderer;
         this.grow(config.initialLength);
-        
+        this.hide();
     }
 
     public grow(qty: number){
         for(let i =0; i < qty; i++){
-            const component = new SnakeBodyComponentView({texture: this._componentTexture, renderer: this._renderer, interactive: false, scale: 0.05, index: i});
-            component.positionChangedSignal.addListener(this.onPositionChanged, this);
+            const component = new SnakeBodyComponentView({texture: this._componentTexture, renderer: this._renderer, interactive: false, scale: 0.05, index: this._bodyComponents.length});
             this. _bodyComponents.push(component);
+            component.positionChangedSignal.addListener(this.onPositionChanged, this);
+            component.add();
         }
     }
 
@@ -61,21 +62,6 @@ export class SnakeBodyView<Tconfig extends SnakeBodyViewConfig>{
             this._bodyComponents[i].hide()
         }
     }
-
-
-    // public placeInit(headPos: {x: number, y: number}){
-    //     for(let i = 0; i < this._bodyComponents.length; i++){
-    //         if(!i){
-    //             this._bodyComponents[i].x = headPos.x;
-    //             this._bodyComponents[i].y = headPos.y + 100;
-    //             console.log(this._bodyComponents[i].x, this._bodyComponents[i].y);
-    //         }else{
-    //             this._bodyComponents[i].x = this._bodyComponents[i-1].x 
-    //             this._bodyComponents[i].y = this._bodyComponents[i-1].y + 100;
-    //             console.log(this._bodyComponents[i].x, this._bodyComponents[i].y);
-    //         }
-    //     }
-    // }
 
     public changePosition(headPos: {x: number, y: number}){
         this._bodyComponents[0].changePosition(headPos);

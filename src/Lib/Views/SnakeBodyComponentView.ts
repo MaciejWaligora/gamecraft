@@ -21,8 +21,8 @@ export class SnakeBodyComponentView<Tconfig extends SnakeBodyComponentViewConfig
         this._center();
     }
 
-    public changePosition(pos: {x: number, y: number}){
-        this.positionChangedSignal.emit({x:this.x, y: this.y, index: this._index});
+    public changePosition(pos: { x: number, y: number }) {
+        this.positionChangedSignal.emit({ x: this.x, y: this.y, index: this._index });
         this.x = pos.x;
         this.y = pos.y;
     }

@@ -36,6 +36,6 @@ export const config: GameConfig = {
     },
     snakeConfig: {
       speed: 10,
-      initialLength: 100
+      initialLength: 10
     }
   };
