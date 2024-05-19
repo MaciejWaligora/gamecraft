@@ -1,4 +1,4 @@
-import { AnimationManager, AnimationManagerConfig } from "../../AnimationManager";
+import { AnimationManager, AnimationManagerConfig } from "../AnimationManager";
 import { InputHandler } from "../../Handlers/InputHandler";
 import { SampleLogoModel, SampleLogoModelConfig } from "../Models/SampleLogoModel";
 import { SnakeBodyModel, SnakeBodyModelConfig } from "../Models/SnakeBodyModel";
@@ -12,6 +12,9 @@ import { SnakeBodyModelController, SnakeBodyModelControllerConfig } from "./Snak
 import { SnakeBodyViewController, SnakeBodyViewControllerConfig } from "./SnakeBodyViewController";
 import { SnakeHeadModelController, SnakeHeadModelControllerConfig } from "./SnakeHeadModelController";
 import { SnakeHeadViewController, SnakeHeadViewControllerConfig } from "./SnakeHeadViewController";
+import { CollisionDetector } from "../CollisionDetector";
+import { View, ViewConfig } from "../Views/View";
+import { SnakeBodyComponentView } from "../Views/SnakeBodyComponentView";
 
 export interface GameControllerConfig{
     sampleLogoModel : SampleLogoModel;
@@ -58,7 +61,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
         this._snakeHeadViewController.addedSignal.addListener(this._onHeadAdded, this);
 
         InputHandler.buttonClickedSignal.addListener(this._onKeyBoardClicked, this);
-
+        CollisionDetector.collisionDetectedSignal.addListener(this._onCollisionDetected, this);
         
     }
     public init(){
@@ -78,7 +81,6 @@ export class GameController<Tconfig extends GameControllerConfig>{
 
     private _onHeadAdded(headPos: {x:number, y: number} | undefined){
         if(headPos){
-            // this._snakeBodyViewController.placeInit(headPos);
         }
     }
 
@@ -133,6 +135,13 @@ export class GameController<Tconfig extends GameControllerConfig>{
         }
         if(isDirection(dir!)){
             this._snakeHeadModelController.changedirection(dir);
+        }
+    }
+
+    private _onCollisionDetected(collisonZone: View<ViewConfig> | undefined){
+        if(collisonZone instanceof SnakeBodyComponentView){
+            this._snakeHeadViewController.stopMoving();
+            console.log('Game Over!')
         }
     }
 }

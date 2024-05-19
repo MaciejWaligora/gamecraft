@@ -4,12 +4,13 @@ import { AssetLoader } from './Lib/AssetLoader';
 import { SampleLogoModel } from './Lib/Models/SampleLogoModel';
 import { SampleLogoView } from './Lib/Views/SampleLogoView';
 import { GameController } from './Lib/Controllers/GameController';
-import { AnimationManager } from './AnimationManager';
+import { AnimationManager } from './Lib/AnimationManager';
 import { SnakeHeadModel } from './Lib/Models/SnakeHeadModel';
 import { SnakeHeadView } from './Lib/Views/SnakeHeadView';
 import { InputHandler } from './Handlers/InputHandler';
 import { SnakeBodyModel } from './Lib/Models/SnakeBodyModel';
 import { SnakeBodyView } from './Lib/Views/SnakeBodyView';
+import { CollisionDetector } from './Lib/CollisionDetector';
 
 
 export interface Game{
@@ -42,6 +43,9 @@ export class GameFactory {
         
         const animationManager = new AnimationManager({renderer: renderer});
 
+        CollisionDetector.addImpactor(snakeHeadView);
+        CollisionDetector.init(renderer);
+        
         InputHandler.addKeyboardInput();
 
         const gameController = new GameController({

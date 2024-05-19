@@ -1,15 +1,15 @@
-import { Animation, AnimationConfig } from "./Animations/Animation";
+import { Animation, AnimationConfig } from "../Animations/Animation";
 import * as PIXI from 'pixijs'
-import { MoveAnimation, MoveAnimationConfig } from "./Animations/MoveAnimation";
-import { TiltAnimation, TiltAnimationConfig } from "./Animations/TiltAnimation";
-import { View, ViewConfig } from "./Lib/Views/View";
-import { SlideInAnimation, SlideInAnimationConfig } from "./Animations/SlideInAnimiation";
-import { PopAnimation, PopAnimationConfig } from "./Animations/PopAnimation";
-import { SpinAnimation, SpinAnimationConfig } from "./Animations/SpinAnimation";
-import { SlideInFromLeftAninmation, SlideInFromLeftAninmationConfig } from "./Animations/SlideInfromLeftAnimation";
-import { SlideOutToRightAnimtaion, SlideOutToRightanimtaionConfig } from "./Animations/SlideOutToRightAnimation";
-import { ConstantMoveAnimation, ConstantMoveAnimationConfig } from "./Animations/ConstantMoveAnimation";
-import { Direction } from "./Lib/Models/SnakeHeadModel";
+import { MoveAnimation, MoveAnimationConfig } from "../Animations/MoveAnimation";
+import { TiltAnimation, TiltAnimationConfig } from "../Animations/TiltAnimation";
+import { View, ViewConfig } from "./Views/View";
+import { SlideInAnimation, SlideInAnimationConfig } from "../Animations/SlideInAnimiation";
+import { PopAnimation, PopAnimationConfig } from "../Animations/PopAnimation";
+import { SpinAnimation, SpinAnimationConfig } from "../Animations/SpinAnimation";
+import { SlideInFromLeftAninmation, SlideInFromLeftAninmationConfig } from "../Animations/SlideInfromLeftAnimation";
+import { SlideOutToRightAnimtaion, SlideOutToRightanimtaionConfig } from "../Animations/SlideOutToRightAnimation";
+import { ConstantMoveAnimation, ConstantMoveAnimationConfig } from "../Animations/ConstantMoveAnimation";
+import { Direction } from "./Models/SnakeHeadModel";
 
 export interface AnimationManagerConfig{
     renderer: PIXI.Application;

@@ -22,7 +22,7 @@ export interface GameConfig {
 export const config: GameConfig = {
     display: {
       width: 1080 ,
-      height: 1920,
+      height: 1520,
       autoResize: true,
       resolution: window.devicePixelRatio,
       background: 0xffff5f
@@ -36,6 +36,6 @@ export const config: GameConfig = {
     },
     snakeConfig: {
       speed: 10,
-      initialLength: 10
+      initialLength: 4
     }
   };

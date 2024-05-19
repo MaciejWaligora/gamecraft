@@ -1,4 +1,5 @@
 
+import { CollisionDetector } from '../CollisionDetector';
 import { SnakeBodyComponentView, SnakeBodyComponentViewConfig } from './SnakeBodyComponentView';
 import { View , ViewConfig} from './View';
 import * as PIXI from 'pixijs'
@@ -15,8 +16,10 @@ export class SnakeBodyView<Tconfig extends SnakeBodyViewConfig>{
     private _componentTexture: PIXI.Texture;
     private _renderer: PIXI.Application;
 
+    private _config: Tconfig;
     constructor(config: Tconfig){
         this._componentTexture = config.texture;
+        this._config = config;
         this._renderer =  config.renderer;
         this.grow(config.initialLength);
         this.hide();
@@ -28,6 +31,9 @@ export class SnakeBodyView<Tconfig extends SnakeBodyViewConfig>{
             this. _bodyComponents.push(component);
             component.positionChangedSignal.addListener(this.onPositionChanged, this);
             component.add();
+            if( this._bodyComponents.length > this._config.initialLength){
+                CollisionDetector.addCollisionZone(component);
+            }
         }
     }
 

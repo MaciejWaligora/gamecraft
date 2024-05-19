@@ -1,4 +1,4 @@
-import { AnimationManager, AnimationManagerConfig } from "../../AnimationManager";
+import { AnimationManager, AnimationManagerConfig } from "../AnimationManager";
 import { Animation, AnimationConfig } from "../../Animations/Animation";
 import { View, ViewConfig } from "../Views/View";
 
