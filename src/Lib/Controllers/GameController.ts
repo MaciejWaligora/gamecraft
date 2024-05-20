@@ -1,6 +1,6 @@
 import { AnimationManager, AnimationManagerConfig } from "../AnimationManager";
 import { InputHandler } from "../../Handlers/InputHandler";
-import { SampleLogoModel, SampleLogoModelConfig } from "../Models/SampleLogoModel";
+import { SampleLogoModel} from "../Models/SampleLogoModel";
 import { SnakeBodyModel, SnakeBodyModelConfig } from "../Models/SnakeBodyModel";
 import { Direction, SnakeHeadModel, SnakeHeadModelConfig } from "../Models/SnakeHeadModel";
 import { SampleLogoView, SampleLogoViewConfig } from "../Views/SampleLogoView";
@@ -15,6 +15,10 @@ import { SnakeHeadViewController, SnakeHeadViewControllerConfig } from "./SnakeH
 import { CollisionDetector } from "../CollisionDetector";
 import { View, ViewConfig } from "../Views/View";
 import { SnakeBodyComponentView } from "../Views/SnakeBodyComponentView";
+import { FoodModel } from "../Models/FoodModel";
+import { FoodView, FoodViewConfig } from "../Views/FoodView";
+import { FoodModelController, FoodModelControllerConfig } from "./FoodModelController";
+import { FoodViewController, FoodViewControllerConfig } from "./FoodViewController";
 
 export interface GameControllerConfig{
     sampleLogoModel : SampleLogoModel;
@@ -24,17 +28,23 @@ export interface GameControllerConfig{
     snakeHeadView: SnakeHeadView<SnakeHeadViewConfig>;
     snakeBodyModel: SnakeBodyModel<SnakeBodyModelConfig>;
     snakeBodyView: SnakeBodyView<SnakeBodyViewConfig>;
+    foodModel: FoodModel;
+    foodView: FoodView<FoodViewConfig>;
 }
 
 export class GameController<Tconfig extends GameControllerConfig>{
 
     private _sampleLogoModelController: SampleLogoModelController<SampleLogoModelControllerConfig>;
     private _sampleLogoViewController: SampleLogoViewController<SampleLogoViewControllerConfig>;
+
     private _snakeHeadModelController: SnakeHeadModelController<SnakeHeadModelControllerConfig>;
     private _snakeHeadViewController: SnakeHeadViewController<SnakeHeadViewControllerConfig>;
 
     private _snakeBodyModelController: SnakeBodyModelController<SnakeBodyModelControllerConfig>;
     private _snakeBodyViewController: SnakeBodyViewController<SnakeBodyViewControllerConfig>;
+
+    private _foodModelController: FoodModelController<FoodModelControllerConfig>;
+    private _foodViewController: FoodViewController<FoodViewControllerConfig>;
 
     constructor(config: Tconfig){
         //create all controllers here
@@ -44,10 +54,13 @@ export class GameController<Tconfig extends GameControllerConfig>{
         this._snakeHeadViewController = new SnakeHeadViewController({view: config.snakeHeadView, animationManager: config.animationManager});
         this._snakeBodyModelController = new SnakeBodyModelController({model: config.snakeBodyModel});
         this._snakeBodyViewController = new SnakeBodyViewController({view: config.snakeBodyView, animationManager: config.animationManager});
+        this._foodModelController = new FoodModelController({model: config.foodModel});
+        this._foodViewController = new FoodViewController({view: config.foodView, animationManager: config.animationManager});
         
         //add listeners to controllers
         this._sampleLogoModelController.logoSelectedSignal.addListener(this.onLogoSelected, this);
         this._sampleLogoModelController.logoUnselectedSignal.addListener(this.onLogoUnselected, this);
+
         this._sampleLogoViewController.clickedSignal.addListener(this._onLogoViewClicked, this);
         this._sampleLogoViewController.removedSignal.addListener(this._onLogoRemoved, this);
 
@@ -57,6 +70,8 @@ export class GameController<Tconfig extends GameControllerConfig>{
 
         this._snakeBodyModelController.growSignal.addListener(this._onBodyGrow, this);
 
+        this._foodModelController.updateSignal.addListener(this._onFoodUpdate, this);
+
         this._snakeHeadViewController.movedSignal.addListener(this._onHeadMoved, this);
         this._snakeHeadViewController.addedSignal.addListener(this._onHeadAdded, this);
 
@@ -64,17 +79,26 @@ export class GameController<Tconfig extends GameControllerConfig>{
         CollisionDetector.collisionDetectedSignal.addListener(this._onCollisionDetected, this);
         
     }
+
     public init(){
         this._sampleLogoViewController.add();
+        
     }
+
     private _onHeadMoved(headPos: {x:number, y: number} | undefined){
         if(headPos){
             this._snakeBodyViewController.changePosition(headPos);
         }
     }
 
+    private _onFoodUpdate(){
+        this._foodViewController.hide();
+        this._foodViewController.setRandomPosition();
+        this._foodViewController.show();
+    }
+
     private _onBodyGrow(growFactor: number | undefined){
-        if(growFactor != undefined){
+        if(growFactor !== undefined){
             this._snakeBodyViewController.grow(growFactor);
         }
     }
@@ -104,7 +128,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
     }
 
     private _onSnakeDirectionChanged(dir: Direction | undefined){
-        if(dir != undefined){
+        if(dir !== undefined){
 
             this._snakeHeadViewController.setDirection(dir);
 
@@ -112,7 +136,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
     }
 
     private _onSnakeSpeedChanged(speed: number | undefined){
-        if(speed != undefined){
+        if(speed !== undefined){
             this._snakeHeadViewController.setSpeed(speed)
         }
     }
@@ -123,9 +147,8 @@ export class GameController<Tconfig extends GameControllerConfig>{
         this._snakeHeadModelController.changedirection('up');
         this._snakeHeadModelController.changeSpeed(10);
         this._snakeHeadModelController.changeMovingStatus(true);
-        setInterval(()=>{
-            this._snakeBodyModelController.grow(1);
-        }, 1000)
+        this._foodViewController.add();
+        this._foodModelController.update(1);
     }
 
     private _onKeyBoardClicked(key: string | undefined){
@@ -142,6 +165,9 @@ export class GameController<Tconfig extends GameControllerConfig>{
         if(collisonZone instanceof SnakeBodyComponentView){
             this._snakeHeadViewController.stopMoving();
             console.log('Game Over!')
+        }else{
+            this._snakeBodyModelController.grow(1);
+            this._foodModelController.update(1);
         }
     }
 }

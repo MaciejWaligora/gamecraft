@@ -11,6 +11,8 @@ import { InputHandler } from './Handlers/InputHandler';
 import { SnakeBodyModel } from './Lib/Models/SnakeBodyModel';
 import { SnakeBodyView } from './Lib/Views/SnakeBodyView';
 import { CollisionDetector } from './Lib/CollisionDetector';
+import { FoodModel } from './Lib/Models/FoodModel';
+import { FoodView } from './Lib/Views/FoodView';
 
 
 export interface Game{
@@ -32,18 +34,22 @@ export class GameFactory {
         const sampleLogoTexture = await AssetLoader.getTextures([config.assets.sampleLogo]);
         const snakeHeadTexture = await AssetLoader.getTextures([config.assets.snakeHead]);
         const snakeBodyPartTexture = await AssetLoader.getTextures([config.assets.snakeBodyPart]);
+        const foodTexture = await AssetLoader.getTextures([config.assets.food]);
 
         const sampleLogoModel = new SampleLogoModel({});
         const snakeHeadModel = new SnakeHeadModel(config.snakeConfig);
         const snakeBodyModel = new SnakeBodyModel(config.snakeConfig);
+        const foodModel = new FoodModel({});
         
         const sampleLogoView =  new SampleLogoView({texture: sampleLogoTexture[0], renderer: renderer, interactive: true});
         const snakeHeadView = new SnakeHeadView({texture: snakeHeadTexture[0], renderer: renderer, interactive: false, scale: 0.05});
         const snakeBodyView = new SnakeBodyView({texture: snakeBodyPartTexture[0], renderer: renderer, initialLength: config.snakeConfig.initialLength, interactive: false});
+        const foodView = new FoodView({texture: foodTexture[0], renderer: renderer, interactive: false, scale: 0.06});
         
         const animationManager = new AnimationManager({renderer: renderer});
 
         CollisionDetector.addImpactor(snakeHeadView);
+        CollisionDetector.addCollisionZone(foodView);
         CollisionDetector.init(renderer);
         
         InputHandler.addKeyboardInput();
@@ -55,7 +61,9 @@ export class GameFactory {
             snakeHeadModel: snakeHeadModel,
             snakeHeadView: snakeHeadView,
             snakeBodyModel: snakeBodyModel,
-            snakeBodyView: snakeBodyView
+            snakeBodyView: snakeBodyView,
+            foodModel: foodModel,
+            foodView: foodView
         });
 
         gameController.init();

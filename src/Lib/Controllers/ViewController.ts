@@ -8,8 +8,10 @@ export interface ViewControllerConfig{
 }
 
 export abstract class ViewController<Tconfig extends ViewControllerConfig>{
+
     protected _config: Tconfig;
     protected _currentAnimations: Animation<AnimationConfig>[] = [];
+
     constructor(config: Tconfig){
         this._config = config;
     }
@@ -19,7 +21,7 @@ export abstract class ViewController<Tconfig extends ViewControllerConfig>{
     }
 
     protected removeAnimatio(animation: Animation<AnimationConfig>){
-        this. _currentAnimations = this. _currentAnimations.filter(animation => !animation.isFinished());
+        this._currentAnimations = this._currentAnimations.filter(animation => !animation.isFinished());
     }
 
 }

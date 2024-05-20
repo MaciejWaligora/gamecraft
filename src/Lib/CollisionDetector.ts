@@ -43,8 +43,9 @@ export class CollisionDetector{
         );
     }
 
-    private static clear(){
-        
+    public static clear(){
+        CollisionDetector.collisionZones = [];
+        CollisionDetector.impactors = [];
     }
 
     public static init(renderer: PIXI.Application){

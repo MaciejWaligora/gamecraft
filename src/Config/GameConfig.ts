@@ -12,6 +12,7 @@ export interface GameConfig {
       sampleLogo: string;
       snakeHead: string;
       snakeBodyPart: string;
+      food: string;
     };
     snakeConfig: {
       speed: number;
@@ -21,8 +22,8 @@ export interface GameConfig {
 
 export const config: GameConfig = {
     display: {
-      width: 1080 ,
-      height: 1520,
+      width: 1920 ,
+      height: 1080,
       autoResize: true,
       resolution: window.devicePixelRatio,
       background: 0xffff5f
@@ -32,10 +33,11 @@ export const config: GameConfig = {
       background: './graphics/background.png',
       sampleLogo: './graphics/logo-template.png',
       snakeHead: './graphics/snake_head.png',
-      snakeBodyPart: './graphics/snakebodypart.png'
+      snakeBodyPart: './graphics/snakebodypart.png',
+      food: './graphics/food.png'
     },
     snakeConfig: {
       speed: 10,
-      initialLength: 4
+      initialLength: 6
     }
   };

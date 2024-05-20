@@ -18,7 +18,7 @@ export class SnakeBodyComponentView<Tconfig extends SnakeBodyComponentViewConfig
         this._SnakeBodyComponentSprite = new PIXI.Sprite(config.texture);
         this._SnakeBodyComponentSprite.anchor.set(0.5, 0.5);
         this.addChild(this._SnakeBodyComponentSprite);
-        this._center();
+
     }
 
     public changePosition(pos: { x: number, y: number }) {

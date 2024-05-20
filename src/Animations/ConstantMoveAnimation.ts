@@ -1,7 +1,6 @@
 import { Direction } from "../Lib/Models/SnakeHeadModel";
 import { Signal } from "../Lib/Signal";
 import { Animation, AnimationConfig } from "./Animation";
-import * as PIXI from 'pixijs';
 
 export interface ConstantMoveAnimationConfig extends AnimationConfig{
     direction: Direction;
