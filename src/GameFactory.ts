@@ -49,7 +49,6 @@ export class GameFactory {
         const animationManager = new AnimationManager({renderer: renderer});
 
         CollisionDetector.addImpactor(snakeHeadView);
-        CollisionDetector.addCollisionZone(foodView);
         CollisionDetector.init(renderer);
         
         InputHandler.addKeyboardInput();
