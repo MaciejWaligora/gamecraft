@@ -1,4 +1,3 @@
-import { map } from "../Utils/map";
 import { MoveAnimation, MoveAnimationConfig } from "./MoveAnimation";
 export interface SlideOutToRightanimtaionConfig extends MoveAnimationConfig{
     screenWidth: number

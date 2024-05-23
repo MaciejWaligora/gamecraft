@@ -1,5 +1,5 @@
 import { SampleLogoModel } from "../Models/SampleLogoModel";
-import { Signal } from "../Signal";
+import { Signal } from "gamecraft-utils";
 import { ModelController, ModelControllerConfig } from "./ModelController";
 
 export interface SampleLogoModelControllerConfig extends ModelControllerConfig{

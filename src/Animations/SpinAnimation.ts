@@ -1,5 +1,4 @@
 import { Animation, AnimationConfig } from "./Animation";
-import * as PIXI from 'pixijs'
 
 export interface SpinAnimationConfig extends AnimationConfig {
     numRotations: number; // Number of full rotations

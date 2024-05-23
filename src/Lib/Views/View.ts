@@ -1,5 +1,5 @@
 import * as PIXI from "pixijs";
-import { Signal } from "../Signal";
+import { Signal } from "gamecraft-utils"
 import { InputHandler } from "../../Handlers/InputHandler";
 
 export interface ViewConfig{
