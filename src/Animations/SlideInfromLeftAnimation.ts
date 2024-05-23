@@ -1,4 +1,3 @@
-import { Animation, AnimationConfig } from "./Animation"
 import { MoveAnimation, MoveAnimationConfig } from "./MoveAnimation";
 
 export interface SlideInFromLeftAninmationConfig extends MoveAnimationConfig{}

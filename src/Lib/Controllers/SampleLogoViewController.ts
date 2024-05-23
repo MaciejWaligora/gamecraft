@@ -2,6 +2,7 @@
 import { Signal } from "gamecraft-utils"
 import { SampleLogoView, SampleLogoViewConfig } from "../Views/SampleLogoView";
 import { ViewController, ViewControllerConfig } from "./ViewController";
+import { InputHandler } from "../../Handlers/InputHandler";
 
 export interface SampleLogoViewControllerConfig extends ViewControllerConfig{
     view: SampleLogoView<SampleLogoViewConfig>;
@@ -19,13 +20,23 @@ export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerCo
     public add(){
         this._config.view.add();
         this._config.animationManager.playSlideInfromLeft(this._config.view, 100);
+        this.addClickHandler();
     }
 
     public remove(){
         this._config.animationManager.playSlideOutToRight(this._config.view, 100, ()=>{
             this._config.view.remove();
+            this.removeClickHandler();
         }, this)
         
+    }
+
+    public addClickHandler(){
+        InputHandler.attachClickHandler(this._config.view);
+    }
+
+    public removeClickHandler(){
+        InputHandler.removeClickHandler(this._config.view);
     }
 
     public show(){

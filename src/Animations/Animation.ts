@@ -1,7 +1,5 @@
-import * as PIXI from 'pixijs'
 import { View, ViewConfig } from '../Lib/Views/View';
 import { Signal } from "gamecraft-utils";
-import { InputHandler } from '../Handlers/InputHandler';
 
 export type AnimationCallback = (delta: number) => void;
 

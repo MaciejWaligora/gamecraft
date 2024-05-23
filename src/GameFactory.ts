@@ -25,7 +25,7 @@ export class GameFactory {
         await AssetLoader.loadBackground(config.assets.background, renderer, config.display.background);
         const sampleLogoTexture = await AssetLoader.getTextures([config.assets.sampleLogo]);
         const sampleLogoModel = new SampleLogoModel({});
-        const sampleLogoView =  new SampleLogoView({texture: sampleLogoTexture[0], renderer: renderer, interactive: true});
+        const sampleLogoView =  new SampleLogoView({texture: sampleLogoTexture[0], renderer: renderer});
         const animationManager = new AnimationManager({renderer: renderer});
 
         const gameController = new GameController({
