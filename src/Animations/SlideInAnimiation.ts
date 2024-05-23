@@ -1,4 +1,3 @@
-import { Signal } from "../Lib/Signal";
 import { MoveAnimation, MoveAnimationConfig } from "./MoveAnimation";
 
 export interface SlideInAnimationConfig extends MoveAnimationConfig{

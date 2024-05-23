@@ -1,5 +1,5 @@
 
-import { Signal } from "../Signal";
+import { Signal } from "gamecraft-utils"
 import { SampleLogoView, SampleLogoViewConfig } from "../Views/SampleLogoView";
 import { ViewController, ViewControllerConfig } from "./ViewController";
 

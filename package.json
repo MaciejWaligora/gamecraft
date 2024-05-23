@@ -10,6 +10,7 @@
     "@types/node": "^16.18.97",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
+    "gamecraft-utils": "^1.0.0",
     "pixijs": "^7.1.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -22,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "create-game-object":".\\scripts\\create_game_object.sh"
+    "create-game-object": ".\\scripts\\create_game_object.sh"
   },
   "eslintConfig": {
     "extends": [
