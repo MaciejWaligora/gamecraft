@@ -1,6 +1,4 @@
-
-import * as PIXI from 'pixijs'
-import { View, ViewConfig } from '../Lib/Views/View';
+import { View, ViewConfig } from "gamecraft-view";
 
 
 export class InputHandler{
