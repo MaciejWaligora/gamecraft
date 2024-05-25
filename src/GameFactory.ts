@@ -4,7 +4,7 @@ import { AssetLoader } from './Lib/AssetLoader';
 import { SampleLogoModel } from './Lib/Models/SampleLogoModel';
 import { SampleLogoView } from './Lib/Views/SampleLogoView';
 import { GameController } from './Lib/Controllers/GameController';
-import { AnimationManager } from './AnimationManager';
+import { AnimationManager } from "gamecraft-animation";
 
 
 export interface Game{

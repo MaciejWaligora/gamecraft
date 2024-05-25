@@ -1,5 +1,5 @@
-import { AnimationManager, AnimationManagerConfig } from "../../AnimationManager";
-import { Animation, AnimationConfig } from "../../Animations/Animation";
+import { AnimationManager, AnimationManagerConfig } from "gamecraft-animation";
+import { Animation, AnimationConfig } from "gamecraft-animation";
 import { View, ViewConfig } from "gamecraft-view";
 
 export interface ViewControllerConfig{

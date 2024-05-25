@@ -10,6 +10,7 @@
     "@types/node": "^16.18.97",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
+    "gamecraft-animation": "^1.4.0",
     "gamecraft-model": "^1.0.0",
     "gamecraft-utils": "^1.0.0",
     "gamecraft-view": "^1.2.0",

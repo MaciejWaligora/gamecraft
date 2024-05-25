@@ -1,4 +1,4 @@
-import { AnimationManager, AnimationManagerConfig } from "../../AnimationManager";
+import { AnimationManager, AnimationManagerConfig } from "gamecraft-animation";
 import { SampleLogoModel, SampleLogoModelConfig } from "../Models/SampleLogoModel";
 import { SampleLogoView, SampleLogoViewConfig } from "../Views/SampleLogoView";
 import { SampleLogoModelController, SampleLogoModelControllerConfig } from "./SampleLogoModellController";
