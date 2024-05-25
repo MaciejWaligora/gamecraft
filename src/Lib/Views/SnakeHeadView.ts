@@ -1,6 +1,5 @@
-
-import { Signal } from '../Signal';
-import { View , ViewConfig} from './View';
+import { Signal } from "gamecraft-utils";
+import { View , ViewConfig} from "gamecraft-view";
 import * as PIXI from 'pixijs'
 
 export interface SnakeHeadViewConfig extends ViewConfig{

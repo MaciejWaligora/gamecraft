@@ -1,6 +1,4 @@
-
-
-import { Signal } from '../Signal';
+import { Signal } from "gamecraft-utils";
 import { SnakeBodyViewController, SnakeBodyViewControllerConfig } from './SnakeBodyViewController';
 import { SnakeHeadViewController, SnakeHeadViewControllerConfig } from './SnakeHeadViewController';
 

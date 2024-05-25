@@ -1,7 +1,7 @@
 
 import { FoodModel } from '../Models/FoodModel';
-import { Signal } from '../Signal';
-import { ModelController, ModelControllerConfig } from './ModelController';
+import { Signal } from 'gamecraft-utils';
+import { ModelController, ModelControllerConfig } from 'gamecraft-controllers';
 
 export interface FoodModelControllerConfig extends ModelControllerConfig{
     model: FoodModel;

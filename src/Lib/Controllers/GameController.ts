@@ -1,5 +1,5 @@
-import { AnimationManager, AnimationManagerConfig } from "../AnimationManager";
-import { InputHandler } from "../../Handlers/InputHandler";
+import { AnimationManager, AnimationManagerConfig } from "gamecraft-animation";
+import { InputHandler } from "gamecraft-input";
 import { SampleLogoModel} from "../Models/SampleLogoModel";
 import { SnakeBodyModel, SnakeBodyModelConfig } from "../Models/SnakeBodyModel";
 import { Direction, SnakeHeadModel, SnakeHeadModelConfig } from "../Models/SnakeHeadModel";
@@ -12,8 +12,8 @@ import { SnakeBodyModelController, SnakeBodyModelControllerConfig } from "./Snak
 import { SnakeBodyViewController, SnakeBodyViewControllerConfig } from "./SnakeBodyViewController";
 import { SnakeHeadModelController, SnakeHeadModelControllerConfig } from "./SnakeHeadModelController";
 import { SnakeHeadViewController, SnakeHeadViewControllerConfig } from "./SnakeHeadViewController";
-import { CollisionDetector } from "../CollisionDetector";
-import { View, ViewConfig } from "../Views/View";
+import { CollisionDetector } from "gamecraft-collision-detector";
+import { View, ViewConfig } from "gamecraft-view";
 import { SnakeBodyComponentView } from "../Views/SnakeBodyComponentView";
 import { FoodModel } from "../Models/FoodModel";
 import { FoodView, FoodViewConfig } from "../Views/FoodView";

@@ -1,7 +1,7 @@
 
 import { SnakeBodyModel, SnakeBodyModelConfig } from '../Models/SnakeBodyModel';
-import { Signal } from '../Signal';
-import { ModelController, ModelControllerConfig } from './ModelController';
+import { Signal } from "gamecraft-utils"
+import { ModelController, ModelControllerConfig } from "gamecraft-controllers";
 
 export interface SnakeBodyModelControllerConfig extends ModelControllerConfig{
     model: SnakeBodyModel<SnakeBodyModelConfig>;

@@ -1,6 +1,5 @@
-
-import { Signal } from '../Signal';
-import { Model, ModelConfig } from './Model';
+import { Signal } from "gamecraft-utils";
+import { Model, ModelConfig } from "gamecraft-model";
 
 export type Direction = ('up'|'down'|'left'|'right');
 

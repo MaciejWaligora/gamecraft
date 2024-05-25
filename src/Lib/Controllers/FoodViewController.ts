@@ -1,9 +1,9 @@
 
 
-import { CollisionDetector } from '../CollisionDetector';
-import { Signal } from '../Signal';
+import { CollisionDetector } from 'gamecraft-collision-detector';
+import { Signal } from 'gamecraft-utils';
 import { FoodView, FoodViewConfig } from '../Views/FoodView';
-import { ViewController, ViewControllerConfig } from './ViewController';
+import { ViewController, ViewControllerConfig } from 'gamecraft-controllers';
 
 export interface FoodViewControllerConfig extends ViewControllerConfig{
     view: FoodView<FoodViewConfig>;

@@ -1,6 +1,3 @@
-
-
-import { Signal } from '../Signal';
 import { SnakeBodyModelController,SnakeBodyModelControllerConfig } from './SnakeBodyModelController';
 import { SnakeHeadModelController, SnakeHeadModelControllerConfig } from './SnakeHeadModelController';
 

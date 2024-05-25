@@ -1,16 +1,16 @@
 import * as PIXI from 'pixijs'
 import { GameConfig } from './Config/GameConfig';
-import { AssetLoader } from './Lib/AssetLoader';
+import { AssetLoader } from "gamecraft-assetloader";
 import { SampleLogoModel } from './Lib/Models/SampleLogoModel';
 import { SampleLogoView } from './Lib/Views/SampleLogoView';
 import { GameController } from './Lib/Controllers/GameController';
-import { AnimationManager } from './Lib/AnimationManager';
+import { AnimationManager } from "gamecraft-animation";
 import { SnakeHeadModel } from './Lib/Models/SnakeHeadModel';
 import { SnakeHeadView } from './Lib/Views/SnakeHeadView';
-import { InputHandler } from './Handlers/InputHandler';
+import { InputHandler } from "gamecraft-input";
 import { SnakeBodyModel } from './Lib/Models/SnakeBodyModel';
 import { SnakeBodyView } from './Lib/Views/SnakeBodyView';
-import { CollisionDetector } from './Lib/CollisionDetector';
+import { CollisionDetector } from "gamecraft-collision-detector";
 import { FoodModel } from './Lib/Models/FoodModel';
 import { FoodView } from './Lib/Views/FoodView';
 

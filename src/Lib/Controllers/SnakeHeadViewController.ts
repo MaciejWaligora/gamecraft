@@ -1,9 +1,9 @@
 
-import { ConstantMoveAnimation, ConstantMoveAnimationConfig } from '../../Animations/ConstantMoveAnimation';
+import { ConstantMoveAnimation, ConstantMoveAnimationConfig } from "gamecraft-animation";
 import { Direction } from '../Models/SnakeHeadModel';
-import { Signal } from '../Signal';
+import { Signal } from 'gamecraft-utils';
 import { SnakeHeadView, SnakeHeadViewConfig } from '../Views/SnakeHeadView';
-import { ViewController, ViewControllerConfig } from './ViewController';
+import { ViewController, ViewControllerConfig } from 'gamecraft-controllers';
 
 export interface SnakeHeadViewControllerConfig extends ViewControllerConfig{
     view: SnakeHeadView<SnakeHeadViewConfig>;

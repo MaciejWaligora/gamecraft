@@ -1,7 +1,7 @@
 
-import { CollisionDetector } from '../CollisionDetector';
+import { CollisionDetector } from "gamecraft-collision-detector";
 import { SnakeBodyComponentView, SnakeBodyComponentViewConfig } from './SnakeBodyComponentView';
-import { View , ViewConfig} from './View';
+import { View , ViewConfig} from "gamecraft-view";
 import * as PIXI from 'pixijs'
 
 export interface SnakeBodyViewConfig extends ViewConfig{

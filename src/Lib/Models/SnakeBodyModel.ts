@@ -1,6 +1,5 @@
-
-import { Signal } from '../Signal';
-import { Model, ModelConfig } from './Model';
+import { Signal } from "gamecraft-utils";
+import { Model, ModelConfig } from "gamecraft-model";
 import { SnakeBodyComponentModel } from './SnakeBodyComponentModel';
 export interface SnakeBodyModelConfig extends ModelConfig{
     initialLength: number;

@@ -1,5 +1,5 @@
 
-import { View , ViewConfig} from './View';
+import { View , ViewConfig} from "gamecraft-view";
 import * as PIXI from 'pixijs'
 
 export interface FoodViewConfig extends ViewConfig{

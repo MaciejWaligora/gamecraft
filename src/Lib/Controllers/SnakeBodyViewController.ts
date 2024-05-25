@@ -1,8 +1,4 @@
-
-
-import { Signal } from '../Signal';
 import { SnakeBodyView, SnakeBodyViewConfig } from '../Views/SnakeBodyView';
-import { ViewController, ViewControllerConfig } from './ViewController';
 
 export interface SnakeBodyViewControllerConfig{
     view: SnakeBodyView<SnakeBodyViewConfig>;
