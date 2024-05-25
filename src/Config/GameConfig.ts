@@ -22,8 +22,8 @@ export interface GameConfig {
 
 export const config: GameConfig = {
     display: {
-      width: 1920 ,
-      height: 1080,
+      width: 1080 ,
+      height: 1920,
       autoResize: true,
       resolution: window.devicePixelRatio,
       background: 0xffff5f

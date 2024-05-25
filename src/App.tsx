@@ -3,7 +3,7 @@ import { GameCanvas } from './Components/GameCanvas';
 import { Game, GameFactory } from './Game/GameFactory';
 import React, { useState, useEffect } from 'react';
 import { config as gameConfig } from './Config/GameConfig';
-import { Scaler } from 'gamecraft-utils';
+import { Scaler } from "gamecraft-utils"
 
 
 
