@@ -165,6 +165,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
     private _onCollisionDetected(collisonZone: View<ViewConfig> | undefined){
         if(collisonZone instanceof SnakeBodyComponentView){
             this._snakeHeadViewController.stopMoving();
+            CollisionDetector.clear();
             console.log('Game Over!')
         }else{
             this._snakeBodyModelController.grow(1);
