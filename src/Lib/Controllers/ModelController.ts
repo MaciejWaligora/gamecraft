@@ -1,4 +1,4 @@
-import { Model, ModelConfig } from "../Models/Model";
+import { Model, ModelConfig } from "gamecraft-model";
 
 export interface ModelControllerConfig{
     model: Model<ModelConfig>;

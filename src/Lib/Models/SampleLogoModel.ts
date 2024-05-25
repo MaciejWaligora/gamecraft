@@ -1,5 +1,5 @@
 import { Signal } from "gamecraft-utils"
-import { Model, ModelConfig } from "./Model";
+import { Model, ModelConfig } from "gamecraft-model";
 
 export interface SampleLogoModelConfig extends ModelConfig{
 
