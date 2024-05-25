@@ -1,18 +1,18 @@
 import * as PIXI from 'pixijs'
 import { GameConfig } from './Config/GameConfig';
 import { AssetLoader } from "gamecraft-assetloader";
-import { SampleLogoModel } from './Lib/Models/SampleLogoModel';
-import { SampleLogoView } from './Lib/Views/SampleLogoView';
+import { SampleLogoModel } from './Lib/Models/SampleLogoModel/SampleLogoModel';
+import { SampleLogoView } from './Lib/Views/SampleLogoView/SampleLogoView';
 import { GameController } from './Lib/Controllers/GameController';
 import { AnimationManager } from "gamecraft-animation";
-import { SnakeHeadModel } from './Lib/Models/SnakeHeadModel';
-import { SnakeHeadView } from './Lib/Views/SnakeHeadView';
+import { SnakeHeadModel } from './Lib/Models/SnakeModel/SnakeHeadModel';
+import { SnakeHeadView } from './Lib/Views/SnakeView/SnakeHeadView';
 import { InputHandler } from "gamecraft-input";
-import { SnakeBodyModel } from './Lib/Models/SnakeBodyModel';
-import { SnakeBodyView } from './Lib/Views/SnakeBodyView';
+import { SnakeBodyModel } from './Lib/Models/SnakeModel/SnakeBodyModel';
+import { SnakeBodyView } from './Lib/Views/SnakeView/SnakeBodyView';
 import { CollisionDetector } from "gamecraft-collision-detector";
-import { FoodModel } from './Lib/Models/FoodModel';
-import { FoodView } from './Lib/Views/FoodView';
+import { FoodModel } from './Lib/Models/FoodModel/FoodModel';
+import { FoodView } from './Lib/Views/FoodView/FoodView';
 
 
 export interface Game{

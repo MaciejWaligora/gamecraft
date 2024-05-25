@@ -1,6 +1,6 @@
 
 import { Signal } from "gamecraft-utils";
-import { SampleLogoView, SampleLogoViewConfig } from "../Views/SampleLogoView";
+import { SampleLogoView, SampleLogoViewConfig } from "../../Views/SampleLogoView/SampleLogoView";
 import { ViewController, ViewControllerConfig } from "gamecraft-controllers";
 
 export interface SampleLogoViewControllerConfig extends ViewControllerConfig{

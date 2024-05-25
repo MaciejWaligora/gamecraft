@@ -1,5 +1,5 @@
 
-import { FoodModel } from '../Models/FoodModel';
+import { FoodModel } from '../../Models/FoodModel/FoodModel';
 import { Signal } from 'gamecraft-utils';
 import { ModelController, ModelControllerConfig } from 'gamecraft-controllers';
 

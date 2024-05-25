@@ -1,5 +1,5 @@
 
-import { SnakeBodyModel, SnakeBodyModelConfig } from '../Models/SnakeBodyModel';
+import { SnakeBodyModel, SnakeBodyModelConfig } from '../../Models/SnakeModel/SnakeBodyModel';
 import { Signal } from "gamecraft-utils"
 import { ModelController, ModelControllerConfig } from "gamecraft-controllers";
 

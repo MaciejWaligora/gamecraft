@@ -1,4 +1,4 @@
-import { SnakeBodyView, SnakeBodyViewConfig } from '../Views/SnakeBodyView';
+import { SnakeBodyView, SnakeBodyViewConfig } from '../../Views/SnakeView/SnakeBodyView';
 
 export interface SnakeBodyViewControllerConfig{
     view: SnakeBodyView<SnakeBodyViewConfig>;

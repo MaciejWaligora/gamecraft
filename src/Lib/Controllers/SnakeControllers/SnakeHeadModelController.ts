@@ -1,5 +1,5 @@
 
-import { Direction, SnakeHeadModel, SnakeHeadModelConfig } from '../Models/SnakeHeadModel';
+import { Direction, SnakeHeadModel, SnakeHeadModelConfig } from '../../Models/SnakeModel/SnakeHeadModel';
 import { Signal } from "gamecraft-utils";
 import { ModelController, ModelControllerConfig } from "gamecraft-controllers";
 

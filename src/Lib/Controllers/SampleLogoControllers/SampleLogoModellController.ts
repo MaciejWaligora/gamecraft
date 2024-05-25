@@ -1,4 +1,4 @@
-import { SampleLogoModel } from "../Models/SampleLogoModel";
+import { SampleLogoModel } from "../../Models/SampleLogoModel/SampleLogoModel";
 import { Signal } from "gamecraft-utils";
 import { ModelController, ModelControllerConfig } from "gamecraft-controllers";
 
