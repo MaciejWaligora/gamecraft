@@ -1,4 +1,4 @@
-import { View, ViewConfig } from '../Lib/Views/View';
+import { View, ViewConfig } from "gamecraft-view";
 import { Signal } from "gamecraft-utils";
 
 export type AnimationCallback = (delta: number) => void;
