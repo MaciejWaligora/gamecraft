@@ -82,7 +82,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
 
     public init(){
         this._sampleLogoViewController.add();
-       this._foodViewController.hide();
+        this._foodViewController.hide();
         
     }
 

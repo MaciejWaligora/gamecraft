@@ -31,6 +31,7 @@ export class SnakeBodyView<Tconfig extends SnakeBodyViewConfig>{
             this. _bodyComponents.push(component);
             component.positionChangedSignal.addListener(this.onPositionChanged, this);
             component.add();
+            component.changePosition({x: -(component.width), y: -(component.height)});
             if( this._bodyComponents.length > this._config.initialLength){
                 CollisionDetector.addCollisionZone(component);
             }
