@@ -1,6 +1,6 @@
 import * as PIXI from 'pixijs'
 import { GameConfig } from './Config/GameConfig';
-import { AssetLoader } from './Lib/AssetLoader';
+import { AssetLoader } from "gamecraft-assetloader";
 import { SampleLogoModel } from './Lib/Models/SampleLogoModel';
 import { SampleLogoView } from './Lib/Views/SampleLogoView';
 import { GameController } from './Lib/Controllers/GameController';
