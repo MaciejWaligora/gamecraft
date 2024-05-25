@@ -12,6 +12,7 @@
     "@types/react-dom": "^18.3.0",
     "gamecraft-animation": "^1.4.0",
     "gamecraft-assetloader": "^1.0.0",
+    "gamecraft-controllers": "^1.0.0",
     "gamecraft-input": "^1.0.0",
     "gamecraft-model": "^1.0.0",
     "gamecraft-utils": "^1.0.0",
