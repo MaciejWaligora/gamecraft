@@ -17,6 +17,12 @@ export interface GameConfig {
     snakeConfig: {
       speed: number;
       initialLength: number
+    };
+    audio:{
+      background:string;
+      sfxtracks:{
+        bite:string;
+      }
     }
   }
 
@@ -39,5 +45,11 @@ export const config: GameConfig = {
     snakeConfig: {
       speed: 10,
       initialLength: 6
+    },
+    audio:{
+      background: '',
+      sfxtracks:{
+        bite: './audio/bite.mp3'
+      }
     }
   };

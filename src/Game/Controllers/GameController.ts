@@ -19,11 +19,13 @@ import { FoodModel } from "../Models/FoodModel/FoodModel";
 import { FoodView, FoodViewConfig } from "../Views/FoodView/FoodView";
 import { FoodModelController, FoodModelControllerConfig } from "./FoodControllers/FoodModelController";
 import { FoodViewController, FoodViewControllerConfig } from "./FoodControllers/FoodViewController";
+import { SoundManager } from "gamecraft-sound";
 
 export interface GameControllerConfig{
     sampleLogoModel : SampleLogoModel;
     sampleLogoView: SampleLogoView<SampleLogoViewConfig>;
     animationManager: AnimationManager<AnimationManagerConfig>;
+    soundManager: SoundManager;
     snakeHeadModel: SnakeHeadModel<SnakeHeadModelConfig>;
     snakeHeadView: SnakeHeadView<SnakeHeadViewConfig>;
     snakeBodyModel: SnakeBodyModel<SnakeBodyModelConfig>;
@@ -46,6 +48,8 @@ export class GameController<Tconfig extends GameControllerConfig>{
     private _foodModelController: FoodModelController<FoodModelControllerConfig>;
     private _foodViewController: FoodViewController<FoodViewControllerConfig>;
 
+    private _soundManager: SoundManager;
+
     constructor(config: Tconfig){
         //create all controllers here
         this._sampleLogoModelController = new SampleLogoModelController({model: config.sampleLogoModel});
@@ -56,6 +60,8 @@ export class GameController<Tconfig extends GameControllerConfig>{
         this._snakeBodyViewController = new SnakeBodyViewController({view: config.snakeBodyView, animationManager: config.animationManager});
         this._foodModelController = new FoodModelController({model: config.foodModel});
         this._foodViewController = new FoodViewController({view: config.foodView, animationManager: config.animationManager});
+
+        this._soundManager =  config.soundManager;
         
         //add listeners to controllers
         this._sampleLogoModelController.logoSelectedSignal.addListener(this.onLogoSelected, this);
@@ -169,6 +175,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
             InputHandler.removeKeyboardInput();
             console.log('Game Over!')
         }else{
+            this._soundManager.playsfx('bite');
             this._snakeBodyModelController.grow(1);
             this._foodModelController.update(1);
         }

@@ -13,6 +13,7 @@ import { SnakeBodyView, SnakeBodyViewConfig } from './Views/SnakeView/SnakeBodyV
 import { CollisionDetector } from "gamecraft-collision-detector";
 import { FoodModel } from './Models/FoodModel/FoodModel';
 import { FoodView, FoodViewConfig } from './Views/FoodView/FoodView';
+import { SoundManager } from 'gamecraft-sound';
 
 
 export interface Game{
@@ -57,6 +58,9 @@ export class GameFactory {
         const foodView = new FoodView({texture: foodTexture[0], renderer: renderer, interactive: false, scale: 0.06});
         
         const animationManager = new AnimationManager({renderer: renderer});
+        const soundManager = new SoundManager();
+
+        soundManager.loadSfxTracks(config.audio.sfxtracks);
 
         CollisionDetector.addImpactor(snakeHeadView);
         CollisionDetector.init(renderer);
@@ -72,7 +76,8 @@ export class GameFactory {
             snakeBodyModel: snakeBodyModel,
             snakeBodyView: snakeBodyView,
             foodModel: foodModel,
-            foodView: foodView
+            foodView: foodView,
+            soundManager: soundManager
         });
 
         gameController.init();
