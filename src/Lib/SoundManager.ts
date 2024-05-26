@@ -8,7 +8,8 @@ export interface Sound{
 export class SoundManager{
 
     private static currentBackgroundSound: Sound;
-    public static playBackgroundSound(track: string){
+
+    public static loadBackgroundSound(track: string){
         const sound = new Howl({
             src:[track],
             loop: true,
@@ -18,13 +19,24 @@ export class SoundManager{
             isPlaying: true,
             sound: sound
         }
+    }
 
-        sound.play();
+    public static playBackGroundSound(){
+        if(SoundManager.currentBackgroundSound){
+            SoundManager.currentBackgroundSound.isPlaying = true;
+            SoundManager.currentBackgroundSound.sound.play();
+        }else{
+            console.log("No track loaded")
+        }
     }
 
     public static stopBackgroundSound(){
-        SoundManager.currentBackgroundSound.isPlaying = false
-        SoundManager.currentBackgroundSound.sound.stop();
+        if(SoundManager.currentBackgroundSound){
+            SoundManager.currentBackgroundSound.isPlaying = false
+            SoundManager.currentBackgroundSound.sound.stop();
+        }else{
+            console.log("No track loaded")
+        }
     }
 
 }
