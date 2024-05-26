@@ -16,6 +16,7 @@
     "gamecraft-controllers": "^1.0.0",
     "gamecraft-input": "^1.0.0",
     "gamecraft-model": "^1.0.0",
+    "gamecraft-sound": "^1.0.0",
     "gamecraft-utils": "^1.0.0",
     "gamecraft-view": "^1.2.0",
     "pixijs": "^7.1.4",
@@ -49,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/howler": "^2.2.11"
   }
 }
