@@ -2,27 +2,37 @@ import * as PIXI from 'pixijs'
 import { GameConfig } from '../Config/GameConfig';
 import { AssetLoader } from "gamecraft-assetloader";
 import { SampleLogoModel } from './Models/SampleLogoModel/SampleLogoModel';
-import { SampleLogoView } from './Views/SampleLogoView/SampleLogoView';
-import { GameController } from './Controllers/GameController';
-import { AnimationManager } from "gamecraft-animation";
-import { SnakeHeadModel } from './Models/SnakeModel/SnakeHeadModel';
-import { SnakeHeadView } from './Views/SnakeView/SnakeHeadView';
+import { SampleLogoView, SampleLogoViewConfig } from './Views/SampleLogoView/SampleLogoView';
+import { GameController, GameControllerConfig } from './Controllers/GameController';
+import { AnimationManager, AnimationManagerConfig } from "gamecraft-animation";
+import { SnakeHeadModel, SnakeHeadModelConfig } from './Models/SnakeModel/SnakeHeadModel';
+import { SnakeHeadView, SnakeHeadViewConfig } from './Views/SnakeView/SnakeHeadView';
 import { InputHandler } from "gamecraft-input";
-import { SnakeBodyModel } from './Models/SnakeModel/SnakeBodyModel';
-import { SnakeBodyView } from './Views/SnakeView/SnakeBodyView';
+import { SnakeBodyModel, SnakeBodyModelConfig } from './Models/SnakeModel/SnakeBodyModel';
+import { SnakeBodyView, SnakeBodyViewConfig } from './Views/SnakeView/SnakeBodyView';
 import { CollisionDetector } from "gamecraft-collision-detector";
 import { FoodModel } from './Models/FoodModel/FoodModel';
-import { FoodView } from './Views/FoodView/FoodView';
+import { FoodView, FoodViewConfig } from './Views/FoodView/FoodView';
 
 
 export interface Game{
     renderer: PIXI.Application,
-    models:{
-    },
-    views:{
-    },
-    controllers:{
-    }
+            models: {
+                sampleLogoModel: SampleLogoModel,
+                snakeHeadModel: SnakeHeadModel<SnakeHeadModelConfig>,
+                snakeBodyModel: SnakeBodyModel<SnakeBodyModelConfig>,
+                foodModel: FoodModel
+            },
+            views: {
+                sampleLogoView: SampleLogoView<SampleLogoViewConfig>,
+                snakeHeadView: SnakeHeadView<SnakeHeadViewConfig>,
+                snakeBodyView: SnakeBodyView<SnakeBodyViewConfig>,
+                foodView: FoodView<FoodViewConfig>
+            },
+            controllers: {
+                gameController: GameController<GameControllerConfig>
+            },
+            animationManager: AnimationManager<AnimationManagerConfig>
 }
 
 export class GameFactory {
@@ -66,14 +76,25 @@ export class GameFactory {
         });
 
         gameController.init();
+        
         return {
             renderer: renderer,
             models: {
+                sampleLogoModel: sampleLogoModel,
+                snakeHeadModel: snakeHeadModel,
+                snakeBodyModel: snakeBodyModel,
+                foodModel: foodModel
             },
             views: {
+                sampleLogoView: sampleLogoView,
+                snakeHeadView: snakeHeadView,
+                snakeBodyView: snakeBodyView,
+                foodView: foodView
             },
             controllers: {
-            }
+                gameController: gameController
+            },
+            animationManager: animationManager
         }
     }
 

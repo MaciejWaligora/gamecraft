@@ -166,6 +166,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
         if(collisonZone instanceof SnakeBodyComponentView){
             this._snakeHeadViewController.stopMoving();
             CollisionDetector.clear();
+            InputHandler.removeKeyboardInput();
             console.log('Game Over!')
         }else{
             this._snakeBodyModelController.grow(1);
