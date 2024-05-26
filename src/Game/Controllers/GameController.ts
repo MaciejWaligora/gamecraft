@@ -121,6 +121,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
 
     private onLogoUnselected(){
         this._sampleLogoViewController.unSelect();
+        this._soundManager.playBackGroundSound();
        
     }
 
@@ -173,6 +174,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
             this._snakeHeadViewController.stopMoving();
             CollisionDetector.clear();
             InputHandler.removeKeyboardInput();
+            this._soundManager.stopBackgroundSound();
             console.log('Game Over!')
         }else{
             this._soundManager.playsfx('bite');

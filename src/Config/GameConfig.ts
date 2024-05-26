@@ -47,7 +47,7 @@ export const config: GameConfig = {
       initialLength: 6
     },
     audio:{
-      background: '',
+      background: './audio/background.mp3',
       sfxtracks:{
         bite: './audio/bite.mp3'
       }

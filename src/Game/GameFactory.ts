@@ -60,6 +60,7 @@ export class GameFactory {
         const animationManager = new AnimationManager({renderer: renderer});
         const soundManager = new SoundManager();
 
+        soundManager.loadBackgroundSound(config.audio.background);
         soundManager.loadSfxTracks(config.audio.sfxtracks);
 
         CollisionDetector.addImpactor(snakeHeadView);
