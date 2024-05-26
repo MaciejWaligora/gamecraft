@@ -18,6 +18,9 @@ export interface GameConfig {
 
   export interface AudioTracks{
     background: string;
+    sfxTracks: {
+      bite: string;
+    }
   }
 
 export const config: GameConfig = {
@@ -34,6 +37,9 @@ export const config: GameConfig = {
       sampleLogo: './graphics/logo-template.png'
     },
     audio:{
-      background: './audio/background.mp3'
+      background: './audio/background.mp3',
+      sfxTracks: {
+        bite: './audio/apple_bite.mp3'
+      }
     }
   };

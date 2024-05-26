@@ -5,7 +5,7 @@ import { SampleLogoModel } from './Lib/Models/SampleLogoModel';
 import { SampleLogoView } from './Lib/Views/SampleLogoView';
 import { GameController } from './Lib/Controllers/GameController';
 import { AnimationManager } from "gamecraft-animation";
-import { SoundManager } from './Lib/SoundManager';
+import { SoundManager } from "gamecraft-sound";
 
 
 export interface Game{
@@ -28,11 +28,14 @@ export class GameFactory {
         const sampleLogoModel = new SampleLogoModel({});
         const sampleLogoView =  new SampleLogoView({texture: sampleLogoTexture[0], renderer: renderer});
         const animationManager = new AnimationManager({renderer: renderer});
-        SoundManager.loadBackgroundSound(config.audio.background);
+        const soundManager = new SoundManager();
+        soundManager.loadBackgroundSound(config.audio.background);
+        soundManager.loadSfxTracks(config.audio.sfxTracks);
         const gameController = new GameController({
             sampleLogoModel: sampleLogoModel,
             sampleLogoView: sampleLogoView,
-            animationManager: animationManager
+            animationManager: animationManager,
+            soundManager: soundManager
         });
 
         gameController.init();
