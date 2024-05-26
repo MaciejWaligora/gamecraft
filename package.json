@@ -18,6 +18,7 @@
     "gamecraft-model": "^1.0.0",
     "gamecraft-utils": "^1.0.0",
     "gamecraft-view": "^1.2.0",
+    "howler": "^2.2.4",
     "pixijs": "^7.1.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -49,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/howler": "^2.2.11"
   }
 }

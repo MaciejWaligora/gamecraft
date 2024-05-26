@@ -31,7 +31,8 @@ export class GameFactory {
         const gameController = new GameController({
             sampleLogoModel: sampleLogoModel,
             sampleLogoView: sampleLogoView,
-            animationManager: animationManager
+            animationManager: animationManager,
+            audioTracks: config.audio
         });
 
         gameController.init();

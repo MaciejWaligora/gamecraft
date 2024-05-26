@@ -48,11 +48,11 @@ export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerCo
     }
 
     public select(){
-        this._config.animationManager.playSpinAnimation(this._config.view,1, true, 100, ()=>{}, this)
+        this._config.animationManager.playSpinAnimation(this._config.view,0.5, true, 100, ()=>{}, this)
     }
 
     public unSelect(){
-        this._config.animationManager.playSpinAnimation(this._config.view,1, false, 100, ()=>{ this.remove()}, this)
+        this._config.animationManager.playSpinAnimation(this._config.view,0.5, false, 100, ()=>{}, this)
     }
     private onClicked(){
         

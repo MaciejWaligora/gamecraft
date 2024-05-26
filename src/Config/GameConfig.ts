@@ -7,10 +7,17 @@ export interface GameConfig {
       resolution: number;
       background?: number
     };
-    assets: {
-      background: string;
-      sampleLogo: string;
-    };
+    assets: Assets;
+    audio: AudioTracks;
+  }
+
+  export interface Assets {
+    background: string;
+    sampleLogo: string;
+  }
+
+  export interface AudioTracks{
+    background: string;
   }
 
 export const config: GameConfig = {
@@ -25,5 +32,8 @@ export const config: GameConfig = {
     assets: {
       background: './graphics/background.png',
       sampleLogo: './graphics/logo-template.png'
+    },
+    audio:{
+      background: './audio/background.mp3'
     }
   };

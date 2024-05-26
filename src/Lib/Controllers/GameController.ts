@@ -3,11 +3,15 @@ import { SampleLogoModel, SampleLogoModelConfig } from "../Models/SampleLogoMode
 import { SampleLogoView, SampleLogoViewConfig } from "../Views/SampleLogoView";
 import { SampleLogoModelController, SampleLogoModelControllerConfig } from "./SampleLogoModellController";
 import { SampleLogoViewController, SampleLogoViewControllerConfig } from "./SampleLogoViewController";
+import { AudioTracks, GameConfig } from "../../Config/GameConfig";
+import { SoundManager } from "../SoundManager";
 
 export interface GameControllerConfig{
     sampleLogoModel : SampleLogoModel;
     sampleLogoView: SampleLogoView<SampleLogoViewConfig>;
     animationManager: AnimationManager<AnimationManagerConfig>;
+
+    audioTracks: AudioTracks;
 }
 
 export class GameController<Tconfig extends GameControllerConfig>{
@@ -16,7 +20,10 @@ export class GameController<Tconfig extends GameControllerConfig>{
     private _sampleLogoViewController: SampleLogoViewController<SampleLogoViewControllerConfig>;
     private _animationManager: AnimationManager<AnimationManagerConfig>;
 
+    private _config: Tconfig;
+
     constructor(config: Tconfig){
+        this._config = config;
         //create all controllers here
         this._sampleLogoModelController = new SampleLogoModelController({model: config.sampleLogoModel});
         this._sampleLogoViewController = new SampleLogoViewController({view: config.sampleLogoView, animationManager: config.animationManager});
@@ -34,10 +41,13 @@ export class GameController<Tconfig extends GameControllerConfig>{
 
     private onLogoSelected(){
         this._sampleLogoViewController.select();
+        SoundManager.playBackgroundSound(this._config.audioTracks.background);
+        
     }
 
     private onLogoUnselected(){
         this._sampleLogoViewController.unSelect();
+        SoundManager.stopBackgroundSound();
     }
 
     private _onLogoViewClicked(){
