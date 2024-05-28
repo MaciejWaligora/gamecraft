@@ -20,6 +20,7 @@ import { FoodView, FoodViewConfig } from "../Views/FoodView/FoodView";
 import { FoodModelController, FoodModelControllerConfig } from "./FoodControllers/FoodModelController";
 import { FoodViewController, FoodViewControllerConfig } from "./FoodControllers/FoodViewController";
 import { SoundManager } from "gamecraft-sound";
+import { ExplosionEmitter } from "gamecraft-particle-system";
 
 export interface GameControllerConfig{
     sampleLogoModel : SampleLogoModel;
@@ -32,6 +33,7 @@ export interface GameControllerConfig{
     snakeBodyView: SnakeBodyView<SnakeBodyViewConfig>;
     foodModel: FoodModel;
     foodView: FoodView<FoodViewConfig>;
+    foodExplosionEmitter: ExplosionEmitter;
 }
 
 export class GameController<Tconfig extends GameControllerConfig>{
@@ -59,7 +61,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
         this._snakeBodyModelController = new SnakeBodyModelController({model: config.snakeBodyModel});
         this._snakeBodyViewController = new SnakeBodyViewController({view: config.snakeBodyView, animationManager: config.animationManager});
         this._foodModelController = new FoodModelController({model: config.foodModel});
-        this._foodViewController = new FoodViewController({view: config.foodView, animationManager: config.animationManager});
+        this._foodViewController = new FoodViewController({view: config.foodView, animationManager: config.animationManager, foodExplosionEmitter: config.foodExplosionEmitter});
 
         this._soundManager =  config.soundManager;
         
