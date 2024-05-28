@@ -4,7 +4,7 @@ import { CollisionDetector } from 'gamecraft-collision-detector';
 import { Signal } from 'gamecraft-utils';
 import { FoodView, FoodViewConfig } from '../../Views/FoodView/FoodView';
 import { ViewController, ViewControllerConfig } from 'gamecraft-controllers';
-import { ExplosionEmitter } from '../../particleSystem/ExplosionEmitter';
+import { ExplosionEmitter } from 'gamecraft-particle-system';
 
 export interface FoodViewControllerConfig extends ViewControllerConfig{
     view: FoodView<FoodViewConfig>;

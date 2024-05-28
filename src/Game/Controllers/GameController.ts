@@ -20,8 +20,7 @@ import { FoodView, FoodViewConfig } from "../Views/FoodView/FoodView";
 import { FoodModelController, FoodModelControllerConfig } from "./FoodControllers/FoodModelController";
 import { FoodViewController, FoodViewControllerConfig } from "./FoodControllers/FoodViewController";
 import { SoundManager } from "gamecraft-sound";
-import { ExplosionEmitter } from "../particleSystem/ExplosionEmitter";
-import { ParticleEmitterConfig } from "../particleSystem/ParticleEmitter";
+import { ExplosionEmitter } from "gamecraft-particle-system";
 
 export interface GameControllerConfig{
     sampleLogoModel : SampleLogoModel;

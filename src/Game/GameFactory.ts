@@ -14,8 +14,8 @@ import { CollisionDetector } from "gamecraft-collision-detector";
 import { FoodModel } from './Models/FoodModel/FoodModel';
 import { FoodView, FoodViewConfig } from './Views/FoodView/FoodView';
 import { SoundManager } from 'gamecraft-sound';
-import { ParticleSystem } from './particleSystem/ParticleSystem';
-import { ExplosionEmitter} from './particleSystem/ExplosionEmitter';
+import { ParticleSystem } from 'gamecraft-particle-system';
+import { ExplosionEmitter} from 'gamecraft-particle-system';
 
 
 export interface Game{
