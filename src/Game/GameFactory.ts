@@ -14,6 +14,8 @@ import { CollisionDetector } from "gamecraft-collision-detector";
 import { FoodModel } from './Models/FoodModel/FoodModel';
 import { FoodView, FoodViewConfig } from './Views/FoodView/FoodView';
 import { SoundManager } from 'gamecraft-sound';
+import { ParticleSystem } from './particleSystem/ParticleSystem';
+import { ExplosionEmitter} from './particleSystem/ExplosionEmitter';
 
 
 export interface Game{
@@ -60,11 +62,17 @@ export class GameFactory {
         const animationManager = new AnimationManager({renderer: renderer});
         const soundManager = new SoundManager();
 
+        const particleSystem = new ParticleSystem({renderer: renderer});
+        const foodExplosionParticleEmitter = new ExplosionEmitter({texture: foodTexture[0]});
+        particleSystem.addEmitter(foodExplosionParticleEmitter);
+
         soundManager.loadBackgroundSound(config.audio.background);
         soundManager.loadSfxTracks(config.audio.sfxtracks);
 
         CollisionDetector.addImpactor(snakeHeadView);
         CollisionDetector.init(renderer);
+
+
         
         InputHandler.addKeyboardInput();
 
@@ -78,7 +86,8 @@ export class GameFactory {
             snakeBodyView: snakeBodyView,
             foodModel: foodModel,
             foodView: foodView,
-            soundManager: soundManager
+            soundManager: soundManager,
+            foodExplosionEmitter: foodExplosionParticleEmitter
         });
 
         gameController.init();
