@@ -16,7 +16,7 @@
     "gamecraft-controllers": "^1.0.0",
     "gamecraft-input": "^1.3.0",
     "gamecraft-model": "^1.0.0",
-    "gamecraft-particle-system": "^1.1.0",
+    "gamecraft-particle-system": "^1.2.0",
     "gamecraft-sound": "^1.0.0",
     "gamecraft-utils": "^1.3.0",
     "gamecraft-view": "^1.2.0",

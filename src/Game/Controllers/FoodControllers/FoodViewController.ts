@@ -41,7 +41,7 @@ export class FoodViewController<Tconfig extends FoodViewControllerConfig> extend
     public hide(){
         const currentX = this._config.view.x;
         const currentY = this._config.view.y;
-        this._foodExplosionEmitter.emitParticles(currentX, currentY, 100);
+        this._foodExplosionEmitter.emitParticles(currentX, currentY, 1000);
         this._config.view.hide();
         CollisionDetector.removeCollisionZone(this._config.view);
     }

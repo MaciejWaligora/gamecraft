@@ -47,7 +47,7 @@ export class GameFactory {
         const sampleLogoTexture = await AssetLoader.getTextures([config.assets.sampleLogo]);
         const snakeHeadTexture = await AssetLoader.getTextures([config.assets.snakeHead]);
         const snakeBodyPartTexture = await AssetLoader.getTextures([config.assets.snakeBodyPart]);
-        const foodTexture = await AssetLoader.getTextures([config.assets.food]);
+        const foodTexture = await AssetLoader.getTextures(config.assets.food);
 
         const sampleLogoModel = new SampleLogoModel({});
         const snakeHeadModel = new SnakeHeadModel(config.snakeConfig);
@@ -63,7 +63,7 @@ export class GameFactory {
         const soundManager = new SoundManager();
 
         const particleSystem = new ParticleSystem({renderer: renderer});
-        const foodExplosionParticleEmitter = new ExplosionEmitter({texture: foodTexture[0]});
+        const foodExplosionParticleEmitter = new ExplosionEmitter({textures: foodTexture});
         particleSystem.addEmitter(foodExplosionParticleEmitter);
 
         soundManager.loadBackgroundSound(config.audio.background);
@@ -113,4 +113,4 @@ export class GameFactory {
         }
     }
 
-}
+}   
