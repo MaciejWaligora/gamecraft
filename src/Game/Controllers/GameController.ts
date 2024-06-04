@@ -20,7 +20,7 @@ import { FoodView, FoodViewConfig } from "../Views/FoodView/FoodView";
 import { FoodModelController, FoodModelControllerConfig } from "./FoodControllers/FoodModelController";
 import { FoodViewController, FoodViewControllerConfig } from "./FoodControllers/FoodViewController";
 import { SoundManager } from "gamecraft-sound";
-import { BezierEmitter, ExplosionEmitter } from "gamecraft-particle-system";
+import { BezierEmitter, DirectionalExplosionEmitter, ExplosionEmitter } from "gamecraft-particle-system";
 
 export interface GameControllerConfig{
     sampleLogoModel : SampleLogoModel;
@@ -34,7 +34,7 @@ export interface GameControllerConfig{
     foodModel: FoodModel;
     foodView: FoodView<FoodViewConfig>;
     foodExplosionEmitter: ExplosionEmitter;
-
+    directionalExplosionEmitter: DirectionalExplosionEmitter;
     bezierEmitter: BezierEmitter;
 }
 
@@ -63,7 +63,13 @@ export class GameController<Tconfig extends GameControllerConfig>{
         this._snakeBodyModelController = new SnakeBodyModelController({model: config.snakeBodyModel});
         this._snakeBodyViewController = new SnakeBodyViewController({view: config.snakeBodyView, animationManager: config.animationManager});
         this._foodModelController = new FoodModelController({model: config.foodModel});
-        this._foodViewController = new FoodViewController({view: config.foodView, animationManager: config.animationManager, foodExplosionEmitter: config.foodExplosionEmitter, bezierEmitter: config.bezierEmitter});
+        this._foodViewController = new FoodViewController({
+            view: config.foodView, 
+            animationManager: config.animationManager, 
+            foodExplosionEmitter: config.foodExplosionEmitter, 
+            bezierEmitter: config.bezierEmitter,
+            directionalExplosionEmitter: config.directionalExplosionEmitter
+        });
 
         this._soundManager =  config.soundManager;
         
@@ -103,6 +109,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
     }
 
     private _onFoodUpdate(){
+        this._foodViewController.setExplosionDirection(this._snakeHeadViewController.getDirection());
         this._foodViewController.hide();
         this._foodViewController.setRandomPosition();
         this._foodViewController.show();
@@ -160,7 +167,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
         this._snakeHeadModelController.changeSpeed(10);
         this._snakeHeadModelController.changeMovingStatus(true);
         this._foodViewController.add();
-        this._foodModelController.update(1);
+        this._foodModelController.update({value: 1, hitDirection: 'up'});
     }
 
     private _onKeyBoardClicked(key: string | undefined){
@@ -183,7 +190,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
         }else{
             this._soundManager.playsfx('bite');
             this._snakeBodyModelController.grow(1);
-            this._foodModelController.update(1);
+            this._foodModelController.update({value: 1, hitDirection: this._snakeHeadViewController.getDirection()});
         }
     }
 }

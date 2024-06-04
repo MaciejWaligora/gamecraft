@@ -16,7 +16,7 @@ export class FoodModelController<Tconfig extends FoodModelControllerConfig> exte
         this._config.model.updateSignal.addListener(this.onUpdate, this);
     }
 
-    public update(value: number){
+    public update(value: {value: number, hitDirection: string}){
         this._config.model.update(value);
     }
 
@@ -27,5 +27,6 @@ export class FoodModelController<Tconfig extends FoodModelControllerConfig> exte
     public getValue(){
         return this._config.model.getValue();
     }
+
 }
 

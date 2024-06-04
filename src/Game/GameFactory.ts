@@ -14,7 +14,7 @@ import { CollisionDetector } from "gamecraft-collision-detector";
 import { FoodModel } from './Models/FoodModel/FoodModel';
 import { FoodView, FoodViewConfig } from './Views/FoodView/FoodView';
 import { SoundManager } from 'gamecraft-sound';
-import { ParticleSystem, ExplosionEmitter, BezierEmitter} from 'gamecraft-particle-system';
+import { ParticleSystem, ExplosionEmitter, BezierEmitter, DirectionalExplosionEmitter} from 'gamecraft-particle-system';
 
 
 export interface Game{
@@ -64,9 +64,10 @@ export class GameFactory {
         const particleSystem = new ParticleSystem({renderer: renderer});
         const foodExplosionParticleEmitter = new ExplosionEmitter({textures: foodTexture});
         const bezierParticleEmitter = new BezierEmitter({textures: foodTexture});
+        const directionalExplosionEmitter = new DirectionalExplosionEmitter({textures: foodTexture});
         particleSystem.addEmitter(bezierParticleEmitter);
         particleSystem.addEmitter(foodExplosionParticleEmitter);
-
+        particleSystem.addEmitter(directionalExplosionEmitter);
         
 
         soundManager.loadBackgroundSound(config.audio.background);
@@ -91,7 +92,8 @@ export class GameFactory {
             foodView: foodView,
             soundManager: soundManager,
             foodExplosionEmitter: foodExplosionParticleEmitter,
-            bezierEmitter: bezierParticleEmitter
+            bezierEmitter: bezierParticleEmitter,
+            directionalExplosionEmitter: directionalExplosionEmitter
             });
 
         gameController.init();

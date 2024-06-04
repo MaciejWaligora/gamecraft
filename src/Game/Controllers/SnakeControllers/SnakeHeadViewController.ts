@@ -91,6 +91,10 @@ export class SnakeHeadViewController<Tconfig extends SnakeHeadViewControllerConf
         }
     }
 
+    public getDirection(){
+        return this._direction;
+    }
+
 
 }
 
