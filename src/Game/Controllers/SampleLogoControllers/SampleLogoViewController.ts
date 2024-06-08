@@ -3,9 +3,12 @@ import { Signal } from "gamecraft-utils";
 import { SampleLogoView, SampleLogoViewConfig } from "../../Views/SampleLogoView/SampleLogoView";
 import { ViewController, ViewControllerConfig } from "gamecraft-controllers";
 import { InputHandler } from "gamecraft-input";
+import { DirectionalExplosionEmitter} from "gamecraft-particle-system";
 
 export interface SampleLogoViewControllerConfig extends ViewControllerConfig{
     view: SampleLogoView<SampleLogoViewConfig>;
+
+    particleEmitter: DirectionalExplosionEmitter
 }
 
 
@@ -42,11 +45,11 @@ export class SampleLogoViewController<Tconfig extends SampleLogoViewControllerCo
     }
 
     public select(){
-        this._config.animationManager.playSpinAnimation(this._config.view,0.25, true, 100, ()=>{}, this)
+        this._config.animationManager.playSpinWithPArticles(this._config.view, 0.5, true, 100,this._config.particleEmitter);
     }
 
     public unSelect(){
-        this._config.animationManager.playSpinAnimation(this._config.view,0.25, false, 100, ()=>{ this.remove()}, this)
+        this._config.animationManager.playSpinWithPArticles(this._config.view, 0.5, false, 100,this._config.particleEmitter,()=>{this.remove()}, this);
     }
     private onClicked(){
         

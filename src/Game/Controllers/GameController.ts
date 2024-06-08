@@ -57,7 +57,7 @@ export class GameController<Tconfig extends GameControllerConfig>{
     constructor(config: Tconfig){
         //create all controllers here
         this._sampleLogoModelController = new SampleLogoModelController({model: config.sampleLogoModel});
-        this._sampleLogoViewController = new SampleLogoViewController({view: config.sampleLogoView, animationManager: config.animationManager});
+        this._sampleLogoViewController = new SampleLogoViewController({view: config.sampleLogoView, animationManager: config.animationManager, particleEmitter: config.directionalExplosionEmitter});
         this._snakeHeadModelController = new SnakeHeadModelController({model: config.snakeHeadModel});
         this._snakeHeadViewController = new SnakeHeadViewController({view: config.snakeHeadView, animationManager: config.animationManager});
         this._snakeBodyModelController = new SnakeBodyModelController({model: config.snakeBodyModel});
