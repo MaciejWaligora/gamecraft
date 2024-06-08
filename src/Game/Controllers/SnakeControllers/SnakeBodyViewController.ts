@@ -1,3 +1,4 @@
+import { ExplosionEmitter } from 'gamecraft-particle-system';
 import { SnakeBodyView, SnakeBodyViewConfig } from '../../Views/SnakeView/SnakeBodyView';
 
 export interface SnakeBodyViewControllerConfig{

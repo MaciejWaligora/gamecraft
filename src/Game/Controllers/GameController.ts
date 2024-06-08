@@ -52,6 +52,8 @@ export class GameController<Tconfig extends GameControllerConfig>{
     private _foodModelController: FoodModelController<FoodModelControllerConfig>;
     private _foodViewController: FoodViewController<FoodViewControllerConfig>;
 
+    private _explosionEmitter: ExplosionEmitter;
+
     private _soundManager: SoundManager;
 
     constructor(config: Tconfig){
@@ -70,6 +72,8 @@ export class GameController<Tconfig extends GameControllerConfig>{
             bezierEmitter: config.bezierEmitter,
             directionalExplosionEmitter: config.directionalExplosionEmitter
         });
+
+        this._explosionEmitter = config.foodExplosionEmitter;
 
         this._soundManager =  config.soundManager;
         
@@ -183,8 +187,12 @@ export class GameController<Tconfig extends GameControllerConfig>{
     private _onCollisionDetected(collisonZone: View<ViewConfig> | undefined){
         if(collisonZone instanceof SnakeBodyComponentView){
             this._snakeHeadViewController.stopMoving();
+            this._snakeBodyViewController.remove();
+            this._snakeHeadViewController.remove(this._explosionEmitter);
+            this._foodViewController.remove();
             CollisionDetector.clear();
             InputHandler.removeKeyboardInput();
+
             this._soundManager.stopBackgroundSound();
             console.log('Game Over!')
         }else{

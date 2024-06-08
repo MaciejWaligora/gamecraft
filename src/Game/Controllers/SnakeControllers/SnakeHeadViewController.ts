@@ -4,6 +4,7 @@ import { Direction } from '../../Models/SnakeModel/SnakeHeadModel';
 import { Signal } from 'gamecraft-utils';
 import { SnakeHeadView, SnakeHeadViewConfig } from '../../Views/SnakeView/SnakeHeadView';
 import { ViewController, ViewControllerConfig } from 'gamecraft-controllers';
+import { ExplosionEmitter } from "gamecraft-particle-system";
 
 export interface SnakeHeadViewControllerConfig extends ViewControllerConfig{
     view: SnakeHeadView<SnakeHeadViewConfig>;
@@ -31,7 +32,8 @@ export class SnakeHeadViewController<Tconfig extends SnakeHeadViewControllerConf
         this.addedSignal.emit({x:this._config.view.x, y: this._config.view.y});
     }
 
-    public remove(){
+    public remove(particleEmitter?: ExplosionEmitter){
+        particleEmitter?.emitParticles(this._config.view.x, this._config.view.y, 1000);
         this._config.view.remove();
     }
 
