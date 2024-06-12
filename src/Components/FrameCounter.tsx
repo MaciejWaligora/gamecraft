@@ -1,0 +1,88 @@
+import { Component } from 'react';
+import * as PIXI from 'pixijs';
+
+interface FrameCounterState {
+  frames: number;
+  lastTimeStamp: number;
+  currentFps: number;
+}
+
+
+
+export class FrameCounter extends Component<{renderer: PIXI.Application}, FrameCounterState> {
+  
+  constructor(props: {renderer: PIXI.Application}) {
+    super(props);
+
+    this.state = {
+      frames: 0,
+      lastTimeStamp: 0,
+      currentFps: 0,
+    };
+
+
+    props.renderer.ticker.add(()=>{
+      this.tick();
+    })
+  }
+
+  private _updateFPS = () => {
+    const currentTimeStamp = performance.now();
+    const elapsedTime = currentTimeStamp - this.state.lastTimeStamp;
+
+    if (elapsedTime >= 1000) {
+      const fps = (this.state.frames / elapsedTime) * 1000;
+
+      this.setState({
+        frames: 0,
+        lastTimeStamp: currentTimeStamp,
+        currentFps: fps,
+      });
+    }
+
+    requestAnimationFrame(this._updateFPS);
+  };
+  public componentDidMount() {
+    this._updateFPS();
+  }
+  public render() {
+    let backgroundColor = '';
+    if (this.state.currentFps < 21) {
+      backgroundColor = 'rgba(255, 0, 0, 0.2)'; // Red with 50% transparency
+    } else if (this.state.currentFps < 24) {
+      backgroundColor = 'rgba(255, 255, 0, 0.2)'; // Yellow with 50% transparency
+    } else {
+      backgroundColor = 'rgba(55, 255, 0, 0.2)'; // Green with 50% transparency
+    }
+
+    const divStyle = {
+      backgroundColor,
+      padding: '10px',
+      height: '30px'
+    };
+
+    return (
+      <div style={divStyle}>
+        {this.state.currentFps.toFixed(2)} fps
+      </div>
+    );
+  }
+  public tick() {
+    this.setState((prevState) => ({
+      ...prevState,
+      frames: prevState.frames + 1,
+    }));
+  }
+  public reset() {
+    this.setState({
+      frames: 0,
+      lastTimeStamp: 0,
+      currentFps: 0,
+    })
+  }
+  public init() {
+    this.setState({
+      lastTimeStamp: performance.now(),
+    });
+  }
+}
