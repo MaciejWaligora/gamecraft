@@ -34,7 +34,8 @@ export interface Game{
             controllers: {
                 gameController: GameController<GameControllerConfig>
             },
-            animationManager: AnimationManager<AnimationManagerConfig>
+            animationManager: AnimationManager<AnimationManagerConfig>;
+            debug: boolean;
 }
 
 export class GameFactory {
@@ -115,7 +116,8 @@ export class GameFactory {
             controllers: {
                 gameController: gameController
             },
-            animationManager: animationManager
+            animationManager: animationManager,
+            debug: config.display.debug
         }
     }
 

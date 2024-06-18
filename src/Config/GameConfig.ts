@@ -5,7 +5,8 @@ export interface GameConfig {
       height: number;
       autoResize: boolean;
       resolution: number;
-      background?: number
+      background?: number;
+      debug: boolean;
     };
     assets: {
       background: string;
@@ -32,8 +33,8 @@ export const config: GameConfig = {
       height: 1920,
       autoResize: true,
       resolution: window.devicePixelRatio,
-      background: 0x404040
-
+      background: 0x404040,
+      debug: false
     },
     assets: {
       background: './graphics/background.png',

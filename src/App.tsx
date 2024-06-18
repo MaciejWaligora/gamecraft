@@ -30,10 +30,10 @@ function App() {
   return (
     <div className="App">
       {game ? 
-          <div className='game-container'>
-            <FrameCounter ref={frameCounterRef} renderer={game.renderer}/>
+          (<div className='game-container'>
+            {game.debug ? <FrameCounter ref={frameCounterRef} renderer={game.renderer}/> : null}
             <GameCanvas pixiApp={game.renderer} />
-          </div> : <p>Loading...</p>}
+          </div>) : (<p>Loading...</p>)}
     </div>
   );
 }
