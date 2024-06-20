@@ -61,6 +61,11 @@ export class FoodViewController<Tconfig extends FoodViewControllerConfig> extend
         CollisionDetector.removeCollisionZone(this._config.view);
     }
 
+    public hideWithoutEffect(){
+        this._config.view.hide();
+        CollisionDetector.removeCollisionZone(this._config.view);
+    }
+
     public setRandomPosition(){
         this._config.view.setRandomPosition();
     }
