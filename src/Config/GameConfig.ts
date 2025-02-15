@@ -33,12 +33,12 @@ export const config: GameConfig = {
       height: 1920,
       autoResize: true,
       resolution: window.devicePixelRatio,
-      background: 0x404040,
+      background: 0xD3D3D3,
       debug: false
     },
     assets: {
       background: './graphics/background.png',
-      sampleLogo: './graphics/logo-template.png',
+      sampleLogo: './graphics/start-button.png',
       snakeHead: './graphics/snake_head.png',
       snakeBodyPart: './graphics/snakebodypart.png',
       food: [
@@ -50,7 +50,7 @@ export const config: GameConfig = {
       ]
     },
     snakeConfig: {
-      speed: 10,
+      speed: 50,
       initialLength: 6
     },
     audio:{
